@@ -1,0 +1,92 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+<#
+    var metaData = new[]{
+              "public; prop  ;Guid  ; CarGuid     ; Код машины"
+            , "public; prop  ;int   ; CarBuildYear; Год постройки машины"
+            //, "public; propN ;string; Vendor      ; Производитель"
+            , "public; propN ;string; Model       ; Модель"
+            , "public; propN ;string; Tire        ; Покрышки"
+            //, "public; field ;bool  ; IsChanged   ; Данные изменены"
+            };
+#>
+using System;
+
+namespace Simple_Class
+{
+    public partial class DemoCarClass
+    {
+<#
+    foreach(var s in metaData)
+    {
+        var a = s.Split(';');
+        var modifier  = a[0].Trim();
+        var fieldType = a[1].Trim();
+        var dataType  = a[2].Trim();
+        var name      = a[3].Trim();
+        var descr     = a[4].Trim();
+
+        switch(fieldType)
+        {
+            case "prop":
+#>
+
+        ///<summary><#= descr#></summary>
+        <#= modifier #> <#= dataType #> <#= name #> {get; set;}
+<#
+                break;
+            case "propN":
+#>
+
+        private <#= dataType #> _<#= name #>; 
+        ///<summary><#= descr #></summary>
+        <#= modifier #> <#= dataType #> <#= name #> 
+        {
+            get => _<#= a[3].Trim() #>; 
+            set
+            {
+                if(value == _<#= name #>) return;
+                _<#= a[3].Trim() #> = value;
+                OnPropChanged("<#= name #>");
+            }
+        }
+<#
+                break;
+            case "field":
+#>
+
+        ///<summary><#= descr #></summary>
+        <#= modifier #> <#= dataType #> <#= name #>;
+<#
+                break;
+        }
+#>
+
+<#
+    }
+#>
+
+        public DemoCarClass() {}
+
+        public DemoCarClass(DemoCarClass source)
+        {
+<#
+    foreach(var s in metaData)
+    {
+        var a = s.Split(';');
+        var name      = a[3].Trim();
+
+#>
+            this.<#= name #> = source.<#= name #>;
+<#
+    }
+#>
+        }
+
+    }
+}

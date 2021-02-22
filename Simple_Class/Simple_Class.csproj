@@ -4,4 +4,23 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="DemoCarClassT4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DemoCarClassT4.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DemoCarClassT4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DemoCarClassT4.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

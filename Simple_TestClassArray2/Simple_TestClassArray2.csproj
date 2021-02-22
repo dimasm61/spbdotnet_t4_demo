@@ -19,4 +19,23 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TextTemplate1.tt">
+      <LastGenOutput>TextTemplate1.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TextTemplate1.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextTemplate1.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
