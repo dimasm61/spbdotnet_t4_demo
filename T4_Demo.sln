@@ -13,37 +13,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_ExtMetadata", "03_ExtMet
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_ExtAssembly", "05_ExtAssembly", "{FDB3B5BD-EEB5-4471-B3E1-92647486644B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple_Enum", "Simple_Enum\Simple_Enum.csproj", "{F3DECE4A-94DB-41BD-A1C9-006D2FB4F12C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple_Enum", "Simple_Enum\Simple_Enum.csproj", "{F3DECE4A-94DB-41BD-A1C9-006D2FB4F12C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCodegeneratorUsing", "MyCodegeneratorUsing\MyCodegeneratorUsing.csproj", "{0C609DAA-1BFA-4A40-9866-918D24731125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCodegeneratorUsing", "MyCodegeneratorUsing\MyCodegeneratorUsing.csproj", "{0C609DAA-1BFA-4A40-9866-918D24731125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple_EnumWriteLine", "Simple_EnumWriteLine\Simple_EnumWriteLine.csproj", "{2A8F536D-0F91-4FBF-B6AF-CAA339B490F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple_EnumWriteLine", "Simple_EnumWriteLine\Simple_EnumWriteLine.csproj", "{2A8F536D-0F91-4FBF-B6AF-CAA339B490F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple_Class", "Simple_Class\Simple_Class.csproj", "{1C6B35CB-6C25-4D16-8459-8D5BFA823FE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple_Class", "Simple_Class\Simple_Class.csproj", "{1C6B35CB-6C25-4D16-8459-8D5BFA823FE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple_TestClassArray", "Simple_TestClassArray\Simple_TestClassArray.csproj", "{5AD84B09-96D2-49F8-A176-00F1A75D6404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple_TestClassArray", "Simple_TestClassArray\Simple_TestClassArray.csproj", "{5AD84B09-96D2-49F8-A176-00F1A75D6404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple_TestClassArray2", "Simple_TestClassArray2\Simple_TestClassArray2.csproj", "{8AEC4C12-DBCE-4945-9ADC-E452849171AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple_TestClassArray2", "Simple_TestClassArray2\Simple_TestClassArray2.csproj", "{8AEC4C12-DBCE-4945-9ADC-E452849171AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumByTxtFile", "EnumByTxtFile\EnumByTxtFile.csproj", "{3D7DEDC5-B422-4D2E-9F07-133CB61741C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumByTxtFile", "EnumByTxtFile\EnumByTxtFile.csproj", "{3D7DEDC5-B422-4D2E-9F07-133CB61741C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumByJsonFile", "EnumByJsonFile\EnumByJsonFile.csproj", "{25CF8E14-9376-4C9B-B164-39F7CA080329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumByJsonFile", "EnumByJsonFile\EnumByJsonFile.csproj", "{25CF8E14-9376-4C9B-B164-39F7CA080329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassByDbTable", "ClassByDbTable\ClassByDbTable.csproj", "{7211FD6E-A54E-415B-8F60-01BBEFEB6DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassByDbTable", "ClassByDbTable\ClassByDbTable.csproj", "{7211FD6E-A54E-415B-8F60-01BBEFEB6DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumByDOM", "EnumByDOM\EnumByDOM.csproj", "{4824F6FC-3636-4288-94EF-71399AABDE03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumByDOM", "EnumByDOM\EnumByDOM.csproj", "{4824F6FC-3636-4288-94EF-71399AABDE03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Service", "04_Service", "{9ED801CB-A029-4635-8664-202BC4DC9CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{6DE10881-1349-4B5D-BDFC-3F1B8B374280}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WcfService", "WcfService\WcfService.csproj", "{6DE10881-1349-4B5D-BDFC-3F1B8B374280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gRpcService", "gRpcService\gRpcService.csproj", "{091023D2-9643-4D48-B599-9BDE997FDB47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gRpcService", "gRpcService\gRpcService.csproj", "{091023D2-9643-4D48-B599-9BDE997FDB47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtAssembly_gRpc", "ExtAssembly_gRpc\ExtAssembly_gRpc.csproj", "{ADB2C753-B734-4720-B646-870EC6C057FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtAssembly_gRpc", "ExtAssembly_gRpc\ExtAssembly_gRpc.csproj", "{ADB2C753-B734-4720-B646-870EC6C057FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtAssembly_DOM", "ExtAssembly_DOM\ExtAssembly_DOM.csproj", "{C9F7C15B-81BF-49FE-9C2A-74B0EEED35C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtAssembly_DOM", "ExtAssembly_DOM\ExtAssembly_DOM.csproj", "{C9F7C15B-81BF-49FE-9C2A-74B0EEED35C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtAssembly_48", "ExtAssembly_48\ExtAssembly_48.csproj", "{5372B0C3-3AAC-420D-8EB9-E942DAB11E4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_WhatElse", "06_WhatElse", "{D16346A9-533C-4274-96FD-6460A16FF037}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
