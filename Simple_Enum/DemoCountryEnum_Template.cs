@@ -33,5 +33,5 @@ namespace MyCodegeneratorUsing
 
         /// <summary>Russian Federation;</summary>
         RUS,
-    }
+    } 
 }

@@ -4,15 +4,12 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
 <#
     var metaData = new[]{
               "public; prop  ;Guid  ; CarGuid     ; Код машины"
             , "public; prop  ;int   ; CarBuildYear; Год постройки машины"
-            //, "public; propN ;string; Vendor      ; Производитель"
             , "public; propN ;string; Model       ; Модель"
             , "public; propN ;string; Tire        ; Покрышки"
-            //, "public; field ;bool  ; IsChanged   ; Данные изменены"
             };
 #>
 using System;

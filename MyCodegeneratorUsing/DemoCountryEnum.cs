@@ -20,17 +20,5 @@ namespace MyCodegeneratorUsing
 
         /// <summary>Finland</summary>
         FIN,
-
-        /// <summary>France</summary>
-        FRA,
-
-        /// <summary>Germany</summary>
-        DEU,
-
-        /// <summary>Poland</summary>
-        POL,
-
-        /// <summary>Russian</summary>
-        RUS,
     }
 }
