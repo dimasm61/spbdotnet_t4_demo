@@ -1,0 +1,42 @@
+﻿[
+    {
+        "Val": "AUS",
+        "Comment": "Australia"
+    },
+    {
+        "Val": "AUT",
+        "Comment": "Austria"
+    },
+    {
+        "Val": "BHR",
+        "Comment": "Bahrain"
+    },
+    {
+        "Val": "BLR",
+        "Comment": "Belarus"
+    },
+    {
+        "Val": "BRA",
+        "Comment": "Brazil"
+    },
+    {
+        "Val": "FIN",
+        "Comment": "Finland"
+    },
+    {
+        "Val": "FRA",
+        "Comment": "France"
+    },
+    {
+        "Val": "DEU",
+        "Comment": "German"
+    },
+    {
+        "Val": "POL",
+        "Comment": "Poland"
+    },
+    {
+        "Val": "RUS",
+        "Comment": "Russian Federation"
+    }
+]

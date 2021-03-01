@@ -1,0 +1,70 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="VisualStudioHelper.ttinclude" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDte" #>
+<#@ assembly name="VSLangProj" #>
+<#@ import namespace="EnvDTE" #>
+<#@ output extension=".cs" #>
+
+<#
+    var VisualStudio = new AutomationHelper(this.Host);
+
+    var project = VisualStudio.GetProject("EnumByDOM");
+
+    var list = VisualStudio
+        .CodeModel
+        .GetAllCodeElementsOfType(project.CodeModel.CodeElements, vsCMElement.vsCMElementClass, false)
+        .Cast<EnvDTE.CodeClass>()
+        //.Where(recordDelegate => recordDelegate.Name.EndsWith(RecordSuffix))
+        .OrderBy(d => d.FullName);
+
+    var commonClass = list.FirstOrDefault(c => c.Name == "CommonClass");
+
+    var classList = list.Where(c=>c.Name != "CommonClass" && c.Name != "Converter");
+
+    //foreach(var item in classList)
+    //{
+        //var parent = item.Parent as EnvDTE.CodeClass;
+//
+        //WriteLine($"//{item.Name} {parent?.Name}");
+    //}
+
+#>
+namespace EnumByDOM
+{
+    public class Converter
+    {
+        public enum ClassEnum
+        {
+<# 
+    foreach(var item in classList)
+    {
+#>
+            <#=item.Name #>,
+<#
+    }
+#>
+        }
+
+        public static CommonClass GetInstance(ClassEnum classEnum)
+        {
+            switch(classEnum)
+            {
+<# 
+    foreach(var item in classList)
+    {
+
+#>
+                case ClassEnum.<#=item.Name #>: return new <#=item.Name #>();
+<#
+    }
+#>
+                default: return null;
+            }
+        }
+    }
+}

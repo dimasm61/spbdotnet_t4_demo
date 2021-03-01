@@ -6,7 +6,7 @@ namespace Simple_Class
     {
 
         ///<summary>Код машины</summary>
-        public Guid CarGuid {get; set;}
+        public Guid CarGuid;
 
 
         ///<summary>Год постройки машины</summary>
@@ -27,20 +27,6 @@ namespace Simple_Class
         }
 
 
-        private string _Tire; 
-        ///<summary>Покрышки</summary>
-        public string Tire 
-        {
-            get => _Tire; 
-            set
-            {
-                if(value == _Tire) return;
-                _Tire = value;
-                OnPropChanged("Tire");
-            }
-        }
-
-
         public DemoCarClass() {}
 
         public DemoCarClass(DemoCarClass source)
@@ -48,7 +34,6 @@ namespace Simple_Class
             this.CarGuid = source.CarGuid;
             this.CarBuildYear = source.CarBuildYear;
             this.Model = source.Model;
-            this.Tire = source.Tire;
         }
 
     }

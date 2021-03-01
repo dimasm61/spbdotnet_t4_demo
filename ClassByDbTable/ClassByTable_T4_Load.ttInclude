@@ -1,0 +1,89 @@
+﻿
+
+<#+
+    public static class DbMsSqlMetadata
+    {
+        public static DataTable Tables = null;
+
+        public static DataTable Columns = null;
+
+        public static void Load(string connStr)
+        {
+            using (var conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+
+                Tables  = conn.GetSchema("Tables", new string[] { null, null, null, null });
+                Columns = conn.GetSchema("Columns", new string[] { null, null, null });
+
+            }
+        }
+    }
+
+    public static string ConvertDbType(string dbType)
+    {
+        var result= "";
+        switch (dbType)
+        {
+            case "image"           : result = "byte[]"        ; break;
+            case "text"            : result = "string"        ; break;
+            case "binary"          : result = "byte[]"        ; break;
+            case "tinyint"         : result = "byte"          ; break;
+            case "date"            : result = "DateTime"      ; break;
+            case "time"            : result = "DateTime"      ; break;
+            case "bit"             : result = "bool"          ; break;
+            case "smallint"        : result = "short"         ; break;
+            case "decimal"         : result = "decimal"       ; break;
+            case "int"             : result = "int"           ; break;
+            case "smalldatetime"   : result = "DateTime"      ; break;
+            case "real"            : result = "float"         ; break;
+            case "money"           : result = "decimal"       ; break;
+            case "datetime"        : result = "DateTime"      ; break;
+            case "float"           : result = "double"        ; break;
+            case "numeric"         : result = "double"        ; break;
+            case "smallmoney"      : result = "decimal"       ; break;
+            case "datetime2"       : result = "DateTime"      ; break;
+            case "bigint"          : result = "long"          ; break;
+            case "varbinary"       : result = "byte[]"        ; break;
+            case "timestamp"       : result = "byte[]"        ; break;
+            case "sysname"         : result = "string"        ; break;
+            case "nvarchar"        : result = "string"        ; break;
+            case "varchar"         : result = "string"        ; break;
+            case "ntext"           : result = "string"        ; break;
+            case "uniqueidentifier": result = "Guid"          ; break;
+            case "datetimeoffset"  : result = "DateTimeOffset"; break;
+            case "sql_variant"     : result = "object"        ; break;
+            case "xml"             : result = "string"        ; break;
+
+            case "char": result =  "string"; break;
+
+            case "nchar": result = "string"; break;
+
+            //hierarchyid
+            //geometry
+            //geography
+            default: result = "byte[]"; break;
+        }
+
+        return result;
+    }
+
+
+    private static string _str = "qwertyuiopasdfghjklzxcvbnm";
+    public static string FixColumnName(string dbColumnName, string dbTableName)
+    {
+        var result = dbColumnName.Replace(" ","_");
+        
+        result = result.Replace(".","_");
+
+        result = (result == dbTableName)?$"{result}Data":result;
+        
+        if( !(_str.Contains(result.ToLower()[0])))
+        {
+            result = $"field{result}";
+        }
+
+        return result;
+    }
+
+#>

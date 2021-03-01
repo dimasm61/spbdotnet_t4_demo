@@ -11,7 +11,7 @@ namespace MyCodegeneratorUsing
     {
 <#
     var metadata = new[]{
-        "AUS:Australia"
+          "AUS:Australia"
         , "AUT:Austria;"
         , "BHR:Bahrain;"
         , "BLR:Belarus;"
@@ -21,6 +21,7 @@ namespace MyCodegeneratorUsing
         , "DEU:Germany;"
         , "POL:Poland;"
         , "RUS:Russian Federation;"}; 
+
     foreach(var a in metadata)
     {
         var b = a.Split(':');

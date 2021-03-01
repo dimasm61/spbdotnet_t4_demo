@@ -1,0 +1,10 @@
+﻿AUS:Australia
+AUT:Austria
+BHR:Bahrain
+BLR:Belarus
+BRA:Brazil
+FIN:Finland
+FRA:France
+DEU:Germany
+POL:Poland
+RUS:Russian Federation

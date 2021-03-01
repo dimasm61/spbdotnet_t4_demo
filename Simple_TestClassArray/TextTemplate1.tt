@@ -14,9 +14,9 @@ namespace Simple_TestClassArray
     {
         private static MyTestClass[] testArray = new []{
 <#
-    var countOfItem = 1000;
-    var countOfTestByModel = 1000;
-    var countOfTestByItem  = 1000;
+    var countOfItem = 5000;
+    var countOfTestByModel = 100000;
+    var countOfTestByItem  = 100000;
 
     var keyList = new List<Guid>();
     var k = "";

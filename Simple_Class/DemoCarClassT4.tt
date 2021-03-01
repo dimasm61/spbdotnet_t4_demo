@@ -6,10 +6,9 @@
 <#@ output extension=".cs" #>
 <#
     var metaData = new[]{
-              "public; prop  ;Guid  ; CarGuid     ; Код машины"
-            , "public; prop  ;int   ; CarBuildYear; Год постройки машины"
-            , "public; propN ;string; Model       ; Модель"
-            , "public; propN ;string; Tire        ; Покрышки"
+              "field ;Guid  ; CarGuid     ; Код машины"
+            , "prop  ;int   ; CarBuildYear; Год постройки машины"
+            , "propN ;string; Model       ; Модель"
             };
 #>
 using System;
@@ -22,11 +21,10 @@ namespace Simple_Class
     foreach(var s in metaData)
     {
         var a = s.Split(';');
-        var modifier  = a[0].Trim();
-        var fieldType = a[1].Trim();
-        var dataType  = a[2].Trim();
-        var name      = a[3].Trim();
-        var descr     = a[4].Trim();
+        var fieldType = a[0].Trim();
+        var dataType  = a[1].Trim();
+        var name      = a[2].Trim();
+        var descr     = a[3].Trim();
 
         switch(fieldType)
         {
@@ -34,7 +32,7 @@ namespace Simple_Class
 #>
 
         ///<summary><#= descr#></summary>
-        <#= modifier #> <#= dataType #> <#= name #> {get; set;}
+        public <#= dataType #> <#= name #> {get; set;}
 <#
                 break;
             case "propN":
@@ -42,13 +40,13 @@ namespace Simple_Class
 
         private <#= dataType #> _<#= name #>; 
         ///<summary><#= descr #></summary>
-        <#= modifier #> <#= dataType #> <#= name #> 
+        public <#= dataType #> <#= name #> 
         {
-            get => _<#= a[3].Trim() #>; 
+            get => _<#= name.Trim() #>; 
             set
             {
                 if(value == _<#= name #>) return;
-                _<#= a[3].Trim() #> = value;
+                _<#= name.Trim() #> = value;
                 OnPropChanged("<#= name #>");
             }
         }
@@ -58,7 +56,7 @@ namespace Simple_Class
 #>
 
         ///<summary><#= descr #></summary>
-        <#= modifier #> <#= dataType #> <#= name #>;
+        public <#= dataType #> <#= name #>;
 <#
                 break;
         }
@@ -76,7 +74,7 @@ namespace Simple_Class
     foreach(var s in metaData)
     {
         var a = s.Split(';');
-        var name      = a[3].Trim();
+        var name      = a[2].Trim();
 
 #>
             this.<#= name #> = source.<#= name #>;

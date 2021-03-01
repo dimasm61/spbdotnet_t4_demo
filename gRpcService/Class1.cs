@@ -4,5 +4,6 @@ namespace gRpcService
 {
     public class Class1
     {
+
     }
 }

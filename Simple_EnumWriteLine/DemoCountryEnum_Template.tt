@@ -7,7 +7,7 @@
 
 <#
     var metadata = new[]{
-            "AUS:Australia"
+              "AUS:Australia"
             , "AUT:Austria;"
             , "BHR:Bahrain;"
             , "BLR:Belarus;"
@@ -24,17 +24,17 @@
     {
         WriteLine($"enum DemoCountryEnum");
         WriteLine($"{{");
-        PushIndent("    ");
+        PushIndent("    ");// отступы во вложенном блоке
         {
             foreach(var a in metadata)
             {
                 var b = a.Split(':');
+                WriteLine($"");
                 WriteLine($"/// <summary>{b[1]}</summary>");
                 WriteLine($"{b[0]},");
             }
-            
         }
-        PopIndent();
+        PopIndent();// убираем отступы во вложенном блоке
         WriteLine($"}}");
     }
     PopIndent();

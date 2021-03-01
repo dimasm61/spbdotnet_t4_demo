@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Console;
 
 namespace MyCodegenerator
 {
@@ -6,30 +7,39 @@ namespace MyCodegenerator
     {
         static void Main(string[] args)
         {
-            var nameSpace = (args.Length > 0) ? args[0] : "defaultNamespace";
-            var enumName = (args.Length > 1) ? args[1] : "defaultEnumName";
-            var enumValues = (args.Length > 2) ? args[2] : "defValue1:;defValue2:";
+            var nameSpace  = args[0]; // MyCodegeneratorUsing
+            var enumName   = args[1]; // DemoCountryEnum
+            var enumValues = args[2]; // AUS:Australia;AUT:Austria;BHR:Bahrain
 
-            var enumValues2 = enumValues.Split(';');
+            var metadata = enumValues.Split(';');
 
-            Console.WriteLine($"namespace {nameSpace}");
-            Console.WriteLine($"{{");
+            WriteLine($"namespace {nameSpace}");
+            WriteLine($"{{");
+
             {
-                Console.WriteLine($"    public enum {enumName}");
-                Console.WriteLine($"    {{");
+                WriteLine($"    public enum {enumName}");
+                WriteLine($"    {{");
+
                 {
-                    foreach (var e in enumValues2)
+                    foreach (var a in metadata)
                     {
-                        var a = e.Split(':');
-                        Console.WriteLine($"");
-                        Console.WriteLine($"        /// <summary>{a[1]}</summary>");
-                        Console.WriteLine($"        {a[0]},");
+                        var b = a.Split(':');
+                        WriteLine($"");
+                        WriteLine($"        /// <summary>{b[1]}</summary>");
+                        WriteLine($"        {b[0]},");
                     }
 
                 }
-                Console.WriteLine($"    }}");
+
+                WriteLine($"    }}");
             }
-            Console.WriteLine($"}}");
+
+            WriteLine($"}}");
         }
     }
 }
+
+
+
+
+
