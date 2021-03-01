@@ -24,7 +24,16 @@ namespace ExtAssembly_48
 
             var commonClass = list.FirstOrDefault(c => c.Name == "CommonClass");
 
-            foreach(var item in list.Where(c=>c.Parent == commonClass))
+            var classList = list.Where(c => c.Name != "CommonClass" && c.Name != "Converter");
+
+            var list2 = commonClass.DerivedTypes.Cast<EnvDTE.CodeClass>();
+
+            foreach (var item in list2)
+            {
+                //WriteLine($"//{item.Name} '{commonClass.Name}'");
+            }
+
+                foreach (var item in list.Where(c=>c.Parent == commonClass))
             {
                 //item.DerivedTypes.AsQueryable().FIr
             }

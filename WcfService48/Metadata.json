@@ -1,0 +1,28 @@
+﻿[
+    {
+        "Comment": "Получения списка сообщений.",
+        "ReturnType": "List<string>",
+        "Name": "GetMessagePage",
+        "ArgList": [
+            "int:take",
+            "int:skip",
+            "string:textFilter",
+            "int?:mmsi"
+        ],
+        "GenerateIn": "iface,client"
+    },
+    {
+        "Comment": "Получения списка сообщений из архива",
+        "ReturnType": "List<string>",
+        "Name": "GetMessageArchivePage",
+        "ArgList": [
+            "int:take",
+            "int:skip",
+            "string:textFilter",
+            "DateTime?:dateFrom",
+            "DateTime?:dateTo",
+            "int?:mmsi"
+        ],
+        "GenerateIn": "iface,client"
+    }
+]
