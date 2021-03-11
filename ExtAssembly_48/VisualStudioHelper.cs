@@ -51,7 +51,17 @@ namespace ExtAssembly_48
 						//hostServiceProvider.GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
 						//_DTE = (EnvDTE.DTE)hostServiceProvider.GetCOMService(typeof(EnvDTE.DTE));
 						// 
-						_DTE = (EnvDTE.DTE)GetCOMService (hostServiceProvider, typeof(EnvDTE.DTE));
+						//_DTE = (EnvDTE.DTE)GetCOMService (hostServiceProvider, typeof(EnvDTE.DTE));
+
+						//EnvDTE80.DTE2 dte2 = GetCOMService(hostServiceProvider, typeof(EnvDTE.DTE)) as EnvDTE80.DTE2;
+						//object dteObject1 = GetCOMService(hostServiceProvider, typeof(EnvDTE.DTE));
+						//_DTE = (EnvDTE.DTE)dteObject1;
+
+						//dynamic d = hostServiceProvider;
+
+						//_DTE = (EnvDTE.DTE)d.GetCOMService(typeof(EnvDTE.DTE));
+						//_DTE = GetService<EnvDTE.DTE>(typeof(EnvDTE.DTE));
+						_DTE = (EnvDTE.DTE)hostServiceProvider.GetService (typeof(EnvDTE.DTE));
 					}
 				}
 				return _DTE;
@@ -76,6 +86,27 @@ namespace ExtAssembly_48
 			{
 				return ret;
 			}
+		}
+
+		private T GetService<T>(Type type) where T : class
+		{
+			IServiceProvider hostServiceProvider = (IServiceProvider)Host;
+			if (hostServiceProvider == null)
+			{
+				throw new Exception("Host property returned unexpected value (null)");
+			}
+			object serviceObj = hostServiceProvider.GetService(type);
+			try
+			{
+				serviceObj = Marshal.GetObjectForIUnknown(Marshal.GetIUnknownForObject(serviceObj));
+			}
+			catch (Exception) { }
+			T service = serviceObj as T;
+			if (service == null)
+			{
+				throw new Exception("Unable to retrieve service");
+			}
+			return service;
 		}
 
 		/// <summary>

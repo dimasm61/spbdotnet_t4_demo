@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TextTemplate1.tt">
-      <LastGenOutput>TextTemplate1.cs</LastGenOutput>
+    <None Update="TestArray2_T4.tt">
+      <LastGenOutput>TestArray2_T4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
   </ItemGroup>
@@ -31,10 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="TextTemplate1.cs">
+    <Compile Update="TestArray2_T4.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>TextTemplate1.tt</DependentUpon>
+      <DependentUpon>TestArray2_T4.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

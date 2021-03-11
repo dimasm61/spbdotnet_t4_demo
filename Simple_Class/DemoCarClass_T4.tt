@@ -1,0 +1,87 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+    var metaData = new[]{
+              "field ;Guid  ; CarGuid     ; Код машины"
+            , "prop  ;int   ; CarBuildYear; Год постройки машины"
+            , "propN ;string; Model       ; Модель"
+            };
+#>
+using System;
+
+namespace Simple_Class
+{
+    public partial class DemoCarClass
+    {
+<#
+    foreach(var s in metaData)
+    {
+        var a = s.Split(';');
+        var fieldType = a[0].Trim();
+        var dataType  = a[1].Trim();
+        var name      = a[2].Trim();
+        var descr     = a[3].Trim();
+
+        switch(fieldType)
+        {
+            case "prop":
+#>
+
+        ///<summary><#= descr#></summary>
+        public <#= dataType #> <#= name #> {get; set;}
+<#
+                break;
+            case "propN":
+#>
+
+        private <#= dataType #> _<#= name #>; 
+        ///<summary><#= descr #></summary>
+        public <#= dataType #> <#= name #> 
+        {
+            get => _<#= name.Trim() #>; 
+            set
+            {
+                if(value == _<#= name #>) return;
+                _<#= name.Trim() #> = value;
+                OnPropChanged("<#= name #>");
+            }
+        }
+<#
+                break;
+            case "field":
+#>
+
+        ///<summary><#= descr #></summary>
+        public <#= dataType #> <#= name #>;
+<#
+                break;
+        }
+#>
+
+<#
+    }
+#>
+
+        public DemoCarClass() {}
+
+        public DemoCarClass(DemoCarClass source)
+        {
+<#
+    foreach(var s in metaData)
+    {
+        var a = s.Split(';');
+        var name      = a[2].Trim();
+
+#>
+            this.<#= name #> = source.<#= name #>;
+<#
+    }
+#>
+        }
+
+    }
+}

@@ -1,6 +1,4 @@
-﻿
-
-<#+
+﻿<#+
     public static class DbMsSqlMetadata
     {
         public static DataTable Tables = null;

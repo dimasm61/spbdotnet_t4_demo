@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.7.2.1\lib\net472\Polly.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.10.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -42,42 +48,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyWcfClient_T4.cs">
+    <Compile Include="MyWcfClient_T4.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyWcfClient_T4.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyWcfServiceWripper_T4.cs">
-      <DependentUpon>MyWcfServiceWripper_T4.tt</DependentUpon>
+    <Compile Include="MyWcfServiceWrapper_T4.cs">
+      <DependentUpon>MyWcfServiceWrapper_T4.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="MyWcfServiceWripper.cs" />
+    <Compile Include="MyWcfServiceWrapper.cs" />
     <Compile Include="MyWcfServiceImpl.cs" />
-    <Compile Include="Interface_T41.cs">
+    <Compile Include="MyWcfInterface_T4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Interface_T4.tt</DependentUpon>
+      <DependentUpon>MyWcfInterface_T4.tt</DependentUpon>
     </Compile>
     <Compile Include="MyWcfClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Metadata.json" />
+    <None Include="packages.config" />
     <None Include="WcfMetadataModel.ttInclude" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyWcfServiceWripper_T4.tt">
+    <Content Include="MyWcfServiceWrapper_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyWcfServiceWripper_T4.cs</LastGenOutput>
+      <LastGenOutput>MyWcfServiceWrapper_T4.cs</LastGenOutput>
     </Content>
     <Content Include="MyWcfClient_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyWcfClient_T4.cs</LastGenOutput>
+      <LastGenOutput>MyWcfClient_T4.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Interface_T4.tt">
+    <Content Include="MyWcfInterface_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Interface_T41.cs</LastGenOutput>
+      <LastGenOutput>MyWcfInterface_T4.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

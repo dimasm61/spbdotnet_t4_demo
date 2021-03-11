@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="DemoCarClassT4.tt">
+    <None Update="DemoCarClass_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DemoCarClassT4.cs</LastGenOutput>
+      <LastGenOutput>DemoCarClass_T4.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -16,10 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DemoCarClassT4.cs">
+    <Compile Update="DemoCarClass_T4.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>DemoCarClassT4.tt</DependentUpon>
+      <DependentUpon>DemoCarClass_T4.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

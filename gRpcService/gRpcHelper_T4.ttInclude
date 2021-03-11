@@ -1,0 +1,76 @@
+﻿<#+
+    public static string ConvertDbTypeForGRpc(string dbType)
+    {
+        var result= "";
+        switch (dbType)
+        {
+            case "image"           : result = "bytes"         ; break;
+            case "text"            : result = "string"        ; break;
+            case "binary"          : result = "bytes"         ; break;
+            case "tinyint"         : result = "int32"          ; break;
+            case "date"            : result = "google.protobuf.Timestamp" ; break;
+            case "time"            : result = "google.protobuf.Timestamp" ; break;
+            case "smalldatetime"   : result = "google.protobuf.Timestamp" ; break;
+            case "datetime"        : result = "google.protobuf.Timestamp" ; break;
+            case "datetime2"       : result = "google.protobuf.Timestamp" ; break;
+            case "datetimeoffset"  : result = "google.protobuf.Timestamp"; break;
+            case "bit"             : result = "bool"          ; break;
+            case "smallint"        : result = "int32"         ; break;
+            case "decimal"         : result = "double"        ; break;
+            case "int"             : result = "int32"         ; break;
+            case "real"            : result = "float"         ; break;
+            case "money"           : result = "double"        ; break;
+            case "float"           : result = "double"        ; break;
+            case "numeric"         : result = "double"        ; break;
+            case "smallmoney"      : result = "double"        ; break;
+            case "bigint"          : result = "int64"         ; break;
+            case "varbinary"       : result = "bytes"         ; break;
+            case "timestamp"       : result = "bytes"         ; break;
+            case "sysname"         : result = "string"        ; break;
+            case "nvarchar"        : result = "string"        ; break;
+            case "varchar"         : result = "string"        ; break;
+            case "ntext"           : result = "string"        ; break;
+            case "uniqueidentifier": result = "string"        ; break;
+            case "sql_variant"     : result = null            ; break;
+            case "xml"             : result = "string"        ; break;
+            case "char": result =  "string"; break;
+            case "nchar": result = "string"; break;
+
+            //hierarchyid
+            //geometry
+            //geography
+            default: result = null; break; 
+        }
+
+        return result;
+    }
+
+    public static string GetCastToDbTypeString(string clrDataType, string fieldName)
+    {
+        switch(clrDataType)
+        {
+            case "DateTime": return $"Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(source.{fieldName})";
+            case "Guid":     return $" source.{fieldName}.ToString()";
+            case "byte[]":   return $"Google.Protobuf.ByteString.CopyFrom(source.{fieldName})";
+            case "decimal":  return $"(double)source.{fieldName}";
+            default:         return $"source.{fieldName}";
+        }
+        return fieldName;
+    }
+
+    public static string GetCastToGRpcTypeString(string clrDataType, string fieldName)
+    {
+        switch(clrDataType)
+        {
+            case "DateTime": return $"source.{fieldName}.ToDateTime()";
+            case "Guid":     return $" Guid.Parse(source.{fieldName})";
+            case "byte[]":   return $"source.{fieldName}.ToByteArray()";
+            case "byte":     return $"(byte)source.{fieldName}";
+            case "short":    return $"(short)source.{fieldName}";
+            case "decimal":  return $"(decimal)source.{fieldName}";
+            default:         return $"source.{fieldName}";
+        }
+        return fieldName;
+    }
+
+#>

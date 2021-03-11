@@ -1,0 +1,45 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" language="C#v3.5" #>
+<#@ output extension=".proto" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ include file="DbModel\ClassByTable_T4_Load.ttInclude" #>
+<#@ include file="gRpcHelper_T4.ttInclude" #>
+
+syntax = "proto3";
+
+option csharp_namespace = "gRpcService.Model";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+import "gRpcMessages_T4.proto";
+
+package proto;
+
+message RequestMsg{
+    int32 key = 1;
+}
+
+service gRpcDbService
+{
+<#
+    // database AdventureWorks2012
+    // https://docs.microsoft.com/ru-ru/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms
+    var connStr = "Server=SRV-4\\EX2012;Database=AdventureWorks2012;User Id=user1;Password=user1;";
+
+    DbMsSqlMetadata.Load(connStr);
+
+    foreach(DataRow tableRow in DbMsSqlMetadata.Tables.Rows)
+    {
+        var tableName = tableRow["table_name"].ToString();
+#>
+    rpc Get<#= tableName#>List(RequestMsg) returns (<#= tableName#>ListResponse){}
+<#
+    }
+#>
+}

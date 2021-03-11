@@ -9,14 +9,18 @@
 
         public string ArgListStr 
         {
-            get{ 
+            get
+            { 
+                // return string "int arg1, int arg2, int arg3"
                 return ArgList.Select(s=>s.Replace(":"," ")).Aggregate((i, j) => i + ", " + j);
             }
         }
 
         public string ArgListWithoutTypeStr 
         {
-            get{ 
+            get
+            { 
+                // return string "arg1, arg2, arg3"
                 return ArgList.Select(s=>s.Split(':')[1]).Aggregate((i, j) => i + ", " + j);
             }
         }

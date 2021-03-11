@@ -1,0 +1,27 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Drawing" #>
+<#@ import namespace="System.Drawing.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace FontFamilies
+{
+    public static class FontFamilies
+    {
+<#
+    foreach (var font in new InstalledFontCollection().Families)
+    {
+        var varName = font.Name
+            .Replace(" ", "_")
+            .Replace("-", "_");
+
+        varName = !Char.IsLetter(varName[0]) ? $"_{varName}" : varName;
+        WriteLine($"     public const string {varName} = \"{font.Name}\";");
+    }
+#>
+
+    } 
+}

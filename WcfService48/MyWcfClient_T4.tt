@@ -21,9 +21,9 @@ namespace WcfService48
 <#
     // hostspecific template directive should be "true"
     string solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
-    var fileName =  $"{solutionPath}\\WcfService48\\Metadata.json";
+    var fileName =  $"{solutionPath}\\WcfService48\\Metadata.json"; 
 
-    var str = File.ReadAllText(fileName);
+    var str = File.ReadAllText(fileName); 
 
     var items = JsonSerializer.Deserialize<List<MetadataItem>>(str);
     
@@ -33,7 +33,7 @@ namespace WcfService48
         /// <summary><#=a.Comment#></summary>
         public <#=a.ReturnType #> <#=a.Name#> (<#=a.ArgListStr #>)
         {
-            return base.Channel.<#=a.Name#>(<#=a.ArgListWithoutTypeStr #>);
+            return _policy.Execute(() => base.Channel.<#=a.Name#>(<#=a.ArgListWithoutTypeStr #>));
         }
 <#
     }

@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="DemoCountryEnum_Template.tt">
-      <LastGenOutput>DemoCountryEnum_Template.cs</LastGenOutput>
+    <None Update="DemoCountryEnum_T4.tt">
+      <LastGenOutput>DemoCountryEnum_T4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
   </ItemGroup>
@@ -16,10 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DemoCountryEnum_Template.cs">
+    <Compile Update="DemoCountryEnum_T4.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>DemoCountryEnum_Template.tt</DependentUpon>
+      <DependentUpon>DemoCountryEnum_T4.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

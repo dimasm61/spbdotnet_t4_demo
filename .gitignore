@@ -25,3 +25,14 @@
 /EnumByDOM/bin/Debug/netcoreapp3.1
 /ExtAssembly_48/bin/Debug
 /WcfService48/obj/Debug
+/EnumByJsonFile/bin/Debug/netcoreapp3.1
+/EnumByTxtFile/bin/Debug/netcoreapp3.1
+/ExtAssemblyWcf_48/obj/Debug
+/FontFamilies/obj
+/gRpcService/bin/Debug/netcoreapp3.1
+/packages
+/Simple_Class/bin/Debug/netcoreapp3.1
+/Simple_Enum/bin/Debug/netcoreapp3.1
+/Simple_EnumWriteLine/bin/Debug/netcoreapp3.1
+/T4AtRuntime/obj
+/WcfService48/bin/Debug

@@ -1,0 +1,105 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" language="C#v3.5" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ include file="DbModel\ClassByTable_T4_Load.ttInclude" #>
+<#@ include file="gRpcHelper_T4.ttInclude" #>
+using System.ComponentModel.DataAnnotations.Schema;
+using System;
+
+namespace gRpcService
+{
+
+<#
+    // database AdventureWorks2012
+    // https://docs.microsoft.com/ru-ru/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms
+    var connStr = "Server=SRV-4\\EX2012;Database=AdventureWorks2012;User Id=user1;Password=user1;";
+
+    DbMsSqlMetadata.Load(connStr);
+#>
+    public static class MyConverter
+    {
+<#
+    foreach(DataRow tableRow in DbMsSqlMetadata.Tables.Rows)
+    {
+        var tableName = tableRow["table_name"].ToString();
+#>
+        public static void CopyFrom(this DbModel.<#= tableName#> dest, Model.<#= tableName#> source)
+        {
+<#  
+        var maxLen= 5;
+
+        foreach(DataRow columnRow in DbMsSqlMetadata.Columns.Rows)
+        {
+            if (columnRow["table_name"].ToString() != tableRow["table_name"].ToString())
+                continue;
+            maxLen = columnRow["column_name"].ToString().Length > maxLen
+                ? columnRow["column_name"].ToString().Length
+                : maxLen;
+        }
+
+        foreach(DataRow columnRow in DbMsSqlMetadata.Columns.Rows)
+        {
+            var columnName = columnRow["column_name"].ToString();
+            if (columnRow["table_name"].ToString() != tableRow["table_name"].ToString())
+                continue;
+
+            var dataType = columnRow["data_type"].ToString();
+
+            var dataTypeClr = ConvertDbType(dataType);
+
+            var gRpcType = ConvertDbTypeForGRpc(dataType);
+
+            var colName = FixColumnName(columnName, tableName);
+
+            if(gRpcType == null)
+            {
+                WriteLine($"    // не определен тип данных для столбца '{columnName} {columnName}'");
+                continue;
+            }
+#>
+            dest.<#= colName.PadRight(maxLen)#> = <#=GetCastToGRpcTypeString(dataTypeClr,colName) #>;
+<#
+        }  
+#>
+        }
+        // ------------------------------
+        public static void CopyFrom(this Model.<#= tableName#> dest, DbModel.<#= tableName#> source)
+        {
+<#  
+        foreach(DataRow columnRow in DbMsSqlMetadata.Columns.Rows)
+        {
+            var columnName = columnRow["column_name"].ToString();
+            if (columnRow["table_name"].ToString() != tableRow["table_name"].ToString())
+                continue;
+
+            var dataType = columnRow["data_type"].ToString();
+
+            var dataTypeClr = ConvertDbType(dataType);
+
+            var gRpcType = ConvertDbTypeForGRpc(dataType);
+
+            var colName = FixColumnName(columnName, tableName);
+
+            if(gRpcType == null)
+            {
+                WriteLine($"    // не определен тип данных для столбца '{columnName} {columnName}'");
+                continue;
+            }
+
+#>
+            dest.<#= colName.PadRight(maxLen)#> = <#=GetCastToDbTypeString(dataTypeClr,colName) #>;
+<#
+        }  
+#>
+        }
+<#
+    }
+#>
+    }
+}

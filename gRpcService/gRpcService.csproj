@@ -5,6 +5,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="gRpcMessages_T4.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.15.3" />
+    <PackageReference Include="Grpc.Core" Version="2.36.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.36.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="gRpcMessages_T4.proto">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>gRpcMessages_T4.tt</DependentUpon>
+    </Protobuf>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DbModel\ClassByTable_T4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ClassByTable_T4.tt</DependentUpon>
+    </Compile>
+    <Compile Update="gRpcMapper.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>gRpcMapper.tt</DependentUpon>
+    </Compile>
+    <Compile Update="gRpcMapper_T4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>gRpcMapper_T4.tt</DependentUpon>
+    </Compile>
     <Compile Update="Interface_T4.cs">
       <DependentUpon>Interface_T4.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -13,6 +49,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="gRpcMapper_T4.tt">
+      <LastGenOutput>gRpcMapper_T4.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="gRpcService_T4.tt">
+      <LastGenOutput>gRpcService_T4.proto</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="gRpcService_T4.proto">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>gRpcService_T4.tt</DependentUpon>
+    </None>
+    <None Update="gRpcMessages_T4.tt">
+      <LastGenOutput>gRpcMessages_T4.proto</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="DbModel\ClassByTable_T4.tt">
+      <LastGenOutput>ClassByTable_T4.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
     <None Update="Interface_T4.tt">
       <LastGenOutput>Interface_T4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>

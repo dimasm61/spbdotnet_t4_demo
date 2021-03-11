@@ -1,0 +1,110 @@
+﻿
+syntax = "proto3";
+
+option csharp_namespace = "gRpcService.Model";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+import "gRpcMessages_T4.proto";
+
+package proto;
+
+message RequestMsg{
+    int32 key = 1;
+}
+
+service gRpcDbService
+{
+    rpc GetvStoreWithContactsList(RequestMsg) returns (vStoreWithContactsListResponse){}
+    rpc GetScrapReasonList(RequestMsg) returns (ScrapReasonListResponse){}
+    rpc GetvStoreWithAddressesList(RequestMsg) returns (vStoreWithAddressesListResponse){}
+    rpc GetvVendorWithContactsList(RequestMsg) returns (vVendorWithContactsListResponse){}
+    rpc GetShiftList(RequestMsg) returns (ShiftListResponse){}
+    rpc GetvVendorWithAddressesList(RequestMsg) returns (vVendorWithAddressesListResponse){}
+    rpc GetProductCategoryList(RequestMsg) returns (ProductCategoryListResponse){}
+    rpc GetShipMethodList(RequestMsg) returns (ShipMethodListResponse){}
+    rpc GetProductCostHistoryList(RequestMsg) returns (ProductCostHistoryListResponse){}
+    rpc GetProductDescriptionList(RequestMsg) returns (ProductDescriptionListResponse){}
+    rpc GetShoppingCartItemList(RequestMsg) returns (ShoppingCartItemListResponse){}
+    rpc GetProductDocumentList(RequestMsg) returns (ProductDocumentListResponse){}
+    rpc GetDatabaseLogList(RequestMsg) returns (DatabaseLogListResponse){}
+    rpc GetProductInventoryList(RequestMsg) returns (ProductInventoryListResponse){}
+    rpc GetSpecialOfferList(RequestMsg) returns (SpecialOfferListResponse){}
+    rpc GetErrorLogList(RequestMsg) returns (ErrorLogListResponse){}
+    rpc GetProductListPriceHistoryList(RequestMsg) returns (ProductListPriceHistoryListResponse){}
+    rpc GetAddressList(RequestMsg) returns (AddressListResponse){}
+    rpc GetSpecialOfferProductList(RequestMsg) returns (SpecialOfferProductListResponse){}
+    rpc GetProductModelList(RequestMsg) returns (ProductModelListResponse){}
+    rpc GetAddressTypeList(RequestMsg) returns (AddressTypeListResponse){}
+    rpc GetStateProvinceList(RequestMsg) returns (StateProvinceListResponse){}
+    rpc GetProductModelIllustrationList(RequestMsg) returns (ProductModelIllustrationListResponse){}
+    rpc GetAWBuildVersionList(RequestMsg) returns (AWBuildVersionListResponse){}
+    rpc GetProductModelProductDescriptionCultureList(RequestMsg) returns (ProductModelProductDescriptionCultureListResponse){}
+    rpc GetBillOfMaterialsList(RequestMsg) returns (BillOfMaterialsListResponse){}
+    rpc GetStoreList(RequestMsg) returns (StoreListResponse){}
+    rpc GetProductPhotoList(RequestMsg) returns (ProductPhotoListResponse){}
+    rpc GetProductProductPhotoList(RequestMsg) returns (ProductProductPhotoListResponse){}
+    rpc GetTransactionHistoryList(RequestMsg) returns (TransactionHistoryListResponse){}
+    rpc GetProductReviewList(RequestMsg) returns (ProductReviewListResponse){}
+    rpc GetBusinessEntityList(RequestMsg) returns (BusinessEntityListResponse){}
+    rpc GetTransactionHistoryArchiveList(RequestMsg) returns (TransactionHistoryArchiveListResponse){}
+    rpc GetProductSubcategoryList(RequestMsg) returns (ProductSubcategoryListResponse){}
+    rpc GetBusinessEntityAddressList(RequestMsg) returns (BusinessEntityAddressListResponse){}
+    rpc GetProductVendorList(RequestMsg) returns (ProductVendorListResponse){}
+    rpc GetBusinessEntityContactList(RequestMsg) returns (BusinessEntityContactListResponse){}
+    rpc GetUnitMeasureList(RequestMsg) returns (UnitMeasureListResponse){}
+    rpc GetVendorList(RequestMsg) returns (VendorListResponse){}
+    rpc GetContactTypeList(RequestMsg) returns (ContactTypeListResponse){}
+    rpc GetCountryRegionCurrencyList(RequestMsg) returns (CountryRegionCurrencyListResponse){}
+    rpc GetCountryRegionList(RequestMsg) returns (CountryRegionListResponse){}
+    rpc GetWorkOrderList(RequestMsg) returns (WorkOrderListResponse){}
+    rpc GetPurchaseOrderDetailList(RequestMsg) returns (PurchaseOrderDetailListResponse){}
+    rpc GetCreditCardList(RequestMsg) returns (CreditCardListResponse){}
+    rpc GetCultureList(RequestMsg) returns (CultureListResponse){}
+    rpc GetWorkOrderRoutingList(RequestMsg) returns (WorkOrderRoutingListResponse){}
+    rpc GetCurrencyList(RequestMsg) returns (CurrencyListResponse){}
+    rpc GetPurchaseOrderHeaderList(RequestMsg) returns (PurchaseOrderHeaderListResponse){}
+    rpc GetCurrencyRateList(RequestMsg) returns (CurrencyRateListResponse){}
+    rpc GetCustomerList(RequestMsg) returns (CustomerListResponse){}
+    rpc GetDepartmentList(RequestMsg) returns (DepartmentListResponse){}
+    rpc GetDocumentList(RequestMsg) returns (DocumentListResponse){}
+    rpc GetSalesOrderDetailList(RequestMsg) returns (SalesOrderDetailListResponse){}
+    rpc GetEmailAddressList(RequestMsg) returns (EmailAddressListResponse){}
+    rpc GetEmployeeList(RequestMsg) returns (EmployeeListResponse){}
+    rpc GetSalesOrderHeaderList(RequestMsg) returns (SalesOrderHeaderListResponse){}
+    rpc GetEmployeeDepartmentHistoryList(RequestMsg) returns (EmployeeDepartmentHistoryListResponse){}
+    rpc GetEmployeePayHistoryList(RequestMsg) returns (EmployeePayHistoryListResponse){}
+    rpc GetSalesOrderHeaderSalesReasonList(RequestMsg) returns (SalesOrderHeaderSalesReasonListResponse){}
+    rpc GetSalesPersonList(RequestMsg) returns (SalesPersonListResponse){}
+    rpc GetIllustrationList(RequestMsg) returns (IllustrationListResponse){}
+    rpc GetJobCandidateList(RequestMsg) returns (JobCandidateListResponse){}
+    rpc GetLocationList(RequestMsg) returns (LocationListResponse){}
+    rpc GetPasswordList(RequestMsg) returns (PasswordListResponse){}
+    rpc GetSalesPersonQuotaHistoryList(RequestMsg) returns (SalesPersonQuotaHistoryListResponse){}
+    rpc GetPersonList(RequestMsg) returns (PersonListResponse){}
+    rpc GetSalesReasonList(RequestMsg) returns (SalesReasonListResponse){}
+    rpc GetSalesTaxRateList(RequestMsg) returns (SalesTaxRateListResponse){}
+    rpc GetPersonCreditCardList(RequestMsg) returns (PersonCreditCardListResponse){}
+    rpc GetvAdditionalContactInfoList(RequestMsg) returns (vAdditionalContactInfoListResponse){}
+    rpc GetPersonPhoneList(RequestMsg) returns (PersonPhoneListResponse){}
+    rpc GetvEmployeeList(RequestMsg) returns (vEmployeeListResponse){}
+    rpc GetSalesTerritoryList(RequestMsg) returns (SalesTerritoryListResponse){}
+    rpc GetvEmployeeDepartmentList(RequestMsg) returns (vEmployeeDepartmentListResponse){}
+    rpc GetPhoneNumberTypeList(RequestMsg) returns (PhoneNumberTypeListResponse){}
+    rpc GetvEmployeeDepartmentHistoryList(RequestMsg) returns (vEmployeeDepartmentHistoryListResponse){}
+    rpc GetvIndividualCustomerList(RequestMsg) returns (vIndividualCustomerListResponse){}
+    rpc GetProductList(RequestMsg) returns (ProductListResponse){}
+    rpc GetvPersonDemographicsList(RequestMsg) returns (vPersonDemographicsListResponse){}
+    rpc GetvJobCandidateList(RequestMsg) returns (vJobCandidateListResponse){}
+    rpc GetvJobCandidateEmploymentList(RequestMsg) returns (vJobCandidateEmploymentListResponse){}
+    rpc GetvJobCandidateEducationList(RequestMsg) returns (vJobCandidateEducationListResponse){}
+    rpc GetvProductAndDescriptionList(RequestMsg) returns (vProductAndDescriptionListResponse){}
+    rpc GetvProductModelCatalogDescriptionList(RequestMsg) returns (vProductModelCatalogDescriptionListResponse){}
+    rpc GetvProductModelInstructionsList(RequestMsg) returns (vProductModelInstructionsListResponse){}
+    rpc GetvSalesPersonList(RequestMsg) returns (vSalesPersonListResponse){}
+    rpc GetSalesTerritoryHistoryList(RequestMsg) returns (SalesTerritoryHistoryListResponse){}
+    rpc GetvSalesPersonSalesByFiscalYearsList(RequestMsg) returns (vSalesPersonSalesByFiscalYearsListResponse){}
+    rpc GetvStateProvinceCountryRegionList(RequestMsg) returns (vStateProvinceCountryRegionListResponse){}
+    rpc GetvStoreWithDemographicsList(RequestMsg) returns (vStoreWithDemographicsListResponse){}
+}
