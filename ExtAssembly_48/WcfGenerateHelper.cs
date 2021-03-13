@@ -86,10 +86,15 @@ namespace ExtAssembly_48
                     }
                     tt.WriteLine($"    , nameof({item.Name}));");
                     tt.WriteLine($"");
-                    tt.WriteLine($"using(var db = new DbContext())");
-                    tt.WriteLine($"{{");
-                    tt.WriteLine($"    return _policy.Execute(() => _impl.{item.Name}(db, {item.ArgListWithoutTypeStr}));");
-                    tt.WriteLine($"}}");
+
+                    tt.WriteLine($"return _policy.Execute(() => ");
+                    tt.WriteLine($"    {{");
+                    tt.WriteLine($"        using (var db = new DbContext()) ");
+                    tt.WriteLine($"        {{");
+                    tt.WriteLine($"            return _impl.{item.Name}(db, {item.ArgListWithoutTypeStr});");
+                    tt.WriteLine($"        }}");
+                    tt.WriteLine($"    }});");
+
                 }
                 tt.PopIndent();
                 tt.WriteLine($"}}");
@@ -111,7 +116,7 @@ namespace ExtAssembly_48
                 tt.WriteLine($"        _logger.Debug(\"{{Method}} finish, {{Duration}} ms\", nameof({item.Name}), sw.ElapsedMilliseconds);");
                 tt.WriteLine($"    }}");
                 tt.WriteLine($"}}");
-             }
+            }
             tt.PopIndent();
             tt.WriteLine($"}}");
 

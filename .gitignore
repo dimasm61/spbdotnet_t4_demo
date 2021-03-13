@@ -36,3 +36,8 @@
 /Simple_EnumWriteLine/bin/Debug/netcoreapp3.1
 /T4AtRuntime/obj
 /WcfService48/bin/Debug
+/ExtAssemblyWcf_48/bin/Debug
+/FontFamilies/bin/Debug/net5.0
+/RuntimeCodegenerator/bin/Debug/net5.0
+/RuntimeCodegenerator/obj
+/T4AtRuntime2/bin/Debug/net5.0

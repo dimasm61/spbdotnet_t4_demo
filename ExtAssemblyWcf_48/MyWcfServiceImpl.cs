@@ -20,6 +20,9 @@ namespace ExtAssemblyWcf_48
         }
     }
 
+    /// <summary>
+    /// Контекст базы данных
+    /// </summary>
     public class DbContext : IDisposable
     {
         public void Dispose()

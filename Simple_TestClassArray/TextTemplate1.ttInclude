@@ -14,11 +14,11 @@
 
         public static Guid[] Models = new[]{Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()};
 
-        public static ClassA GetNextRandomData()
+        public static ClassA GetNextRandomData(Guid key)
         {
             var result = new ClassA();
 
-            result.Key = Guid.NewGuid().ToString();
+            result.Key = key.ToString();
             result.ModelKey = Models.OrderBy(c=> Guid.NewGuid()).FirstOrDefault().ToString();
             result.CarName= string.Join("", Enumerable.Repeat(0, 50).Select(n => AllowedChars[Rnd.Next(60)]));
             result.BuildYear = Rnd.Next(1990, 2020).ToString();

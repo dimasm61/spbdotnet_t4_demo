@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace ExtAssemblyWcf_48
 {
-    public partial class MyWcfClient: System.ServiceModel.ClientBase<IMyWcfService>, IMyWcfService
+    public partial class MyWcfClient: System.ServiceModel.ClientBase<MyWcfInterface>, MyWcfInterface
     {
         private Policy _policy;
 

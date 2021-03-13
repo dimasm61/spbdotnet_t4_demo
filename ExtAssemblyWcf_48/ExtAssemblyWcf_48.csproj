@@ -49,37 +49,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyWcfClient.cs" />
-    <Compile Include="MyWcfClient1.cs">
+    <Compile Include="MyWcfClient_T4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyWcfClient.tt</DependentUpon>
+      <DependentUpon>MyWcfClient_T4.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyWcfInterface.cs">
+    <Compile Include="MyWcfInterface.cs" />
+    <Compile Include="MyWcfInterface_T4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyWcfInterface.tt</DependentUpon>
+      <DependentUpon>MyWcfInterface_T4.tt</DependentUpon>
     </Compile>
     <Compile Include="MyWcfServiceImpl.cs" />
     <Compile Include="MyWcfServiceWrapper.cs" />
-    <Compile Include="MyWcfServiceWrapper1.cs">
+    <Compile Include="MyWcfServiceWrapper_T4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyWcfServiceWrapper.tt</DependentUpon>
+      <DependentUpon>MyWcfServiceWrapper_T4.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyWcfClient.tt">
+    <Content Include="MyWcfClient_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyWcfClient1.cs</LastGenOutput>
+      <LastGenOutput>MyWcfClient_T4.cs</LastGenOutput>
     </Content>
-    <Content Include="MyWcfServiceWrapper.tt">
+    <Content Include="MyWcfServiceWrapper_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyWcfServiceWrapper1.cs</LastGenOutput>
+      <LastGenOutput>MyWcfServiceWrapper_T4.cs</LastGenOutput>
     </Content>
-    <Content Include="MyWcfInterface.tt">
+    <Content Include="MyWcfInterface_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyWcfInterface.cs</LastGenOutput>
+      <LastGenOutput>MyWcfInterface_T4.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -25,10 +25,13 @@ namespace ExtAssemblyWcf_48
                     + $"mmsi:{mmsi}, "
                     , nameof(GetMessagePage));
 
-                using(var db = new DbContext())
-                {
-                    return _policy.Execute(() => _impl.GetMessagePage(db, take, skip, textFilter, mmsi));
-                }
+                return _policy.Execute(() => 
+                    {
+                        using (var db = new DbContext()) 
+                        {
+                            return _impl.GetMessagePage(db, take, skip, textFilter, mmsi);
+                        }
+                    });
             }
             catch(BrokenCircuitException bcex)
             {
@@ -48,7 +51,6 @@ namespace ExtAssemblyWcf_48
                     _logger.Debug("{Method} finish, {Duration} ms", nameof(GetMessagePage), sw.ElapsedMilliseconds);
                 }
             }
-
         }
         /// <summary>Получения списка сообщений из архива</summary> 
         public List<string> GetMessageArchivePage(int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo, int? mmsi)
@@ -69,10 +71,13 @@ namespace ExtAssemblyWcf_48
                     + $"mmsi:{mmsi}, "
                     , nameof(GetMessageArchivePage));
 
-                using(var db = new DbContext())
-                {
-                    return _policy.Execute(() => _impl.GetMessageArchivePage(db, take, skip, textFilter, dateFrom, dateTo, mmsi));
-                }
+                return _policy.Execute(() => 
+                    {
+                        using (var db = new DbContext()) 
+                        {
+                            return _impl.GetMessageArchivePage(db, take, skip, textFilter, dateFrom, dateTo, mmsi);
+                        }
+                    });
             }
             catch(BrokenCircuitException bcex)
             {
@@ -92,7 +97,6 @@ namespace ExtAssemblyWcf_48
                     _logger.Debug("{Method} finish, {Duration} ms", nameof(GetMessageArchivePage), sw.ElapsedMilliseconds);
                 }
             }
-
         }
     } 
 }
