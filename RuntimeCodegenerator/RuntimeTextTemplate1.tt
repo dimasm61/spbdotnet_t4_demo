@@ -8,8 +8,10 @@
 <#@ import namespace="System.Net.Http" #>
 <#@ import namespace="System.Text.Json" #>
 <html>
+<body>
     <ul>
 <#  
+    // https://jsonplaceholder.typicode.com/
     var url = "https://jsonplaceholder.typicode.com/users";
     
     using var client = new HttpClient();
@@ -26,4 +28,5 @@
     }
 #>
     </ul>
+</body>
 </html>

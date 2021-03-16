@@ -41,48 +41,51 @@ namespace WcfService48
 
         //}
 
-        public List<string> GetMessagePage2(int take, int skip, string textFilter, int? mmsi)
+        public T GetDataWrapper<T>(
+              string methodName
+            , Func<DbContext,T> act
+        ) where T: class, new()
         {
-            if (LogInformationEnabled) _logger.Information("{Method} start", nameof(GetMessagePage2));
+            if (LogInformationEnabled) _logger.Information("{Method} start", methodName);
             Stopwatch sw = null;
-
-            if (IsTrace)
+            if(IsTrace)
                 sw = Stopwatch.StartNew();
             try
             {
-                if (LogVerboseEnabled) _logger.Verbose($"{{Method}} args: "
-                    + $"take:{take}"
-                    + $"take:{skip}"
-                    + $"take:{textFilter}"
-                    + $"take:{mmsi}"
-                    , nameof(GetMessagePage2));
 
-                using (var db = new DbContext())
+                using(var db = new DbContext())
                 {
-                    return _policy.Execute(() => _impl.GetMessagePage(db, take, skip, textFilter, mmsi));
+                    return _policy.Execute<T>(() => act?.Invoke(db));
                 }
             }
-            catch (BrokenCircuitException bcex)
+            catch(BrokenCircuitException bcex)
             {
-                _logger.Warning($"{{Method}} {nameof(BrokenCircuitException)}, return empty", nameof(GetMessagePage2));
-                return new List<string>();
+                _logger.Warning($"{{Method}} {nameof(BrokenCircuitException)}, return empty", methodName);
+                return new T();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                if (IsTrace) sw.Stop();
+                if(IsTrace) sw.Stop();
 
-                _logger.Error(ex, nameof(GetMessagePage2));
+                _logger.Error(ex, nameof(GetMessagePage));
             }
             finally
             {
-                if (IsTrace)
+                if(IsTrace) 
                 {
                     sw.Stop();
-                    if (LogDebugEnabled) _logger.Debug("{Method} finish, {Duration} ms", nameof(GetMessagePage2), sw.ElapsedMilliseconds);
+                    if (LogDebugEnabled) _logger.Debug("{Method} finish, {Duration} ms", methodName, sw.ElapsedMilliseconds);
                 }
             }
 
             return null;
+        }
+
+        public List<string> GetMessagePage2(int take, int skip, string textFilter, int? mmsi)
+        {
+            var act = new Func<DbContext, List<string>>((db) => _impl.GetMessagePage(db, take, skip, textFilter, mmsi));
+
+            return GetDataWrapper(nameof(GetMessagePage2), act);
         }
     }
 }

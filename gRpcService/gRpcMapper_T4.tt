@@ -22,7 +22,7 @@ namespace gRpcService
 
     DbMsSqlMetadata.Load(connStr);
 #>
-    public static class MyConverter
+    public static class MyConverter 
     {
 <#
     foreach(DataRow tableRow in DbMsSqlMetadata.Tables.Rows)

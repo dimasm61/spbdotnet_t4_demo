@@ -32,10 +32,11 @@ namespace RuntimeCodegenerator
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("<html>\r\n    <ul>\r\n");
+            this.Write("<html>\r\n<body>\r\n    <ul>\r\n");
             
-            #line 12 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 13 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
   
+    // https://jsonplaceholder.typicode.com/
     var url = "https://jsonplaceholder.typicode.com/users";
     
     using var client = new HttpClient();
@@ -52,21 +53,21 @@ namespace RuntimeCodegenerator
             #line hidden
             this.Write("        <li>");
             
-            #line 24 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 26 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(user.name));
             
             #line default
             #line hidden
             this.Write("<li>\r\n");
             
-            #line 25 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 27 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
 
     }
 
             
             #line default
             #line hidden
-            this.Write("    </ul>\r\n</html>\r\n");
+            this.Write("    </ul>\r\n</body>\r\n</html>\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

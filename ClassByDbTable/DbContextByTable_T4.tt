@@ -10,10 +10,12 @@
 <#@ include file="ClassByTable_T4_Load.ttInclude" #>
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
+using System.Data.Entity;
 
 namespace ClassByDbTable
 {
-
+    public partial class AdventureWorksDbContext
+    {
 <#
     // database AdventureWorks2012
     // https://docs.microsoft.com/ru-ru/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms
@@ -25,26 +27,9 @@ namespace ClassByDbTable
     {
         var tableName = tableRow["table_name"].ToString();
 #>
-
-    [Table("<#= tableName#>", Schema = "<#= tableRow["table_schema"]#>")]
-    public partial class <#= tableName#>
-    {
-<#  
-        foreach(DataRow columnRow in DbMsSqlMetadata.Columns.Rows)
-        {
-            var columnName = columnRow["column_name"].ToString();
-            if (columnRow["table_name"].ToString() != tableRow["table_name"].ToString())
-                continue;
-#>
-        [Column(name:"<#=columnRow["column_name"].ToString() #>")]
-        public  <#= ConvertDbType(columnRow["data_type"].ToString())#> <#=FixColumnName(columnName, tableName) #> { get; set; }
-
-<#
-        }  
-#>
-    }
+        public DbSet<<#= tableName#>> t<#= tableName#> { get; set; }
 <#
     }
 #>
-
+    }
 }

@@ -4,7 +4,7 @@ using System;
 namespace gRpcService
 {
 
-    public static class MyConverter
+    public static class MyConverter 
     {
         public static void CopyFrom(this DbModel.vStoreWithContacts dest, Model.vStoreWithContacts source)
         {

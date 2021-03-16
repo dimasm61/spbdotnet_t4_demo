@@ -1,0 +1,8 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ output extension=".txt" #>
+<#@ assembly name="$(SolutionDir)ExtAssembly_48\$(OutDir)ExtAssembly_48.dll"#>
+<#@ import namespace="ExtAssembly_48" #>
+<#
+    TemplateGenertorHelper.GenerateSomeText(this);
+#>

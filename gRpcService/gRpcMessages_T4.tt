@@ -17,7 +17,7 @@ option csharp_namespace = "gRpcService.Model";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-package proto;
+package proto; 
 
 <#
     // database AdventureWorks2012
@@ -29,6 +29,7 @@ package proto;
     foreach(DataRow tableRow in DbMsSqlMetadata.Tables.Rows)
     {
         var tableName = tableRow["table_name"].ToString();
+
 #>
 
 message <#= tableName#>{

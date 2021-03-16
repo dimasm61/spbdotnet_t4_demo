@@ -64,6 +64,7 @@
     <Compile Include="FontFamiliesHelper.cs" />
     <Compile Include="gRpcGenerateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateGenertorHelper.cs" />
     <Compile Include="TestArrayHelper.cs" />
     <Compile Include="VisualStudioHelper.cs" />
     <Compile Include="WcfGenerateHelper.cs" />
