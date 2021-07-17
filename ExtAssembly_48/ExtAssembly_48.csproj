@@ -38,9 +38,9 @@
     <Reference Include="envdte80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.TextTemplating.15.0, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.TextTemplating.VSHost.15.0, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+<!--    <Reference Include="Microsoft.VisualStudio.TextTemplating.15.0, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />-->
+<!--    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />-->
+<!--    <Reference Include="Microsoft.VisualStudio.TextTemplating.VSHost.15.0, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />-->
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -59,6 +59,29 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
+  <Choose>
+    <When Condition="'$(BuildingByResharper)' == 'True'">
+      <ItemGroup>
+        <Reference Include="JetBrains.TextTemplating">
+            <HintPath>packages\JetBrains.TextTemplating.dll</HintPath>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+        <ItemGroup>
+          <Reference Include="Microsoft.VisualStudio.TextTemplating.15.0">
+            <HintPath>packages\Microsoft.VisualStudio.TextTemplating.15.0.dll</HintPath>
+          </Reference>
+          <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0" >
+            <HintPath>packages\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll</HintPath>
+          </Reference>
+          <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.11.0" >
+            <HintPath>packages\Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.dll</HintPath>
+          </Reference>
+        </ItemGroup>
+    </Otherwise>
+  </Choose>
+  
   <ItemGroup>
     <Compile Include="DbMsSqlMetadata.cs" />
     <Compile Include="FontFamiliesHelper.cs" />
