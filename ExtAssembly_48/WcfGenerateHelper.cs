@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TextTemplating;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +10,9 @@ namespace ExtAssembly_48
 {
     public static class WcfGenerateHelper
     {
+        /// <summary>
+        /// Класс описывающий сигнатуру метода
+        /// </summary>
         public class MetadataItem
         {
             public string ReturnType { get; set; }
@@ -37,8 +39,15 @@ namespace ExtAssembly_48
             }
         }
 
-        public static void GenerateInterfaceWrapper(TextTransformation tt, string fileName)
+        /// <summary>
+        /// Генерируем интервейс на основе json списка экземпляров типа MetadataItem
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="fileName"></param>
+        public static void GenerateInterfaceWrapper(object context, string fileName)
         {
+            var tt = new TextTransformationProxy(context);
+
             var str = File.ReadAllText(fileName);
 
             var items = JsonSerializer.Deserialize<List<MetadataItem>>(str);
@@ -50,8 +59,15 @@ namespace ExtAssembly_48
             }
         }
 
-        public static void GenerateServiceWrapper(TextTransformation tt, string fileName)
+        /// <summary>
+        /// Генерируем "типовой" слой для реализации WCF службы на основе json списка экземпляров типа MetadataItem
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="fileName"></param>
+        public static void GenerateServiceWrapper(object context, string fileName)
         {
+            var tt = new TextTransformationProxy(context);
+
             var str = File.ReadAllText(fileName);
 
             var items = JsonSerializer.Deserialize<List<MetadataItem>>(str);
@@ -62,8 +78,10 @@ namespace ExtAssembly_48
             }
         }
 
-        private static void GenerateWrapperMethod(TextTransformation tt, MetadataItem item)
+        private static void GenerateWrapperMethod(object context, MetadataItem item)
         {
+            var tt = new TextTransformationProxy(context);
+
             tt.WriteLine($"/// <summary>{item.Comment}</summary> ");
             tt.WriteLine($"public {item.ReturnType} {item.Name}({item.ArgListStr})");
             tt.WriteLine($"{{");
@@ -122,9 +140,15 @@ namespace ExtAssembly_48
 
         }
 
-
-        public static void GenerateClient(TextTransformation tt, string fileName)
+        /// <summary>
+        /// Генерируем WCF клиент с polly на основе json списка экземпляров типа MetadataItem
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="fileName"></param>
+        public static void GenerateClient(object context, string fileName)
         {
+            var tt = new TextTransformationProxy(context);
+
             var str = File.ReadAllText(fileName);
 
             var items = JsonSerializer.Deserialize<List<MetadataItem>>(str);
@@ -135,8 +159,10 @@ namespace ExtAssembly_48
             }
         }
 
-        private static void GenerateClientMethod(TextTransformation tt, MetadataItem item)
+        private static void GenerateClientMethod(object context, MetadataItem item)
         {
+            var tt = new TextTransformationProxy(context);
+
             tt.WriteLine($"/// <summary>{item.Comment}</summary> ");
             tt.WriteLine($"public {item.ReturnType} {item.Name}({item.ArgListStr})");
             tt.WriteLine($"{{");

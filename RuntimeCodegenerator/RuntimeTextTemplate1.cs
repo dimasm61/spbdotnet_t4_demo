@@ -22,7 +22,7 @@ namespace RuntimeCodegenerator
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+    #line 1 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class RuntimeTextTemplate1 : RuntimeTextTemplate1Base
     {
@@ -34,7 +34,7 @@ namespace RuntimeCodegenerator
         {
             this.Write("<html>\r\n<body>\r\n    <ul>\r\n");
             
-            #line 13 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 13 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
   
     // https://jsonplaceholder.typicode.com/
     var url = "https://jsonplaceholder.typicode.com/users";
@@ -53,14 +53,14 @@ namespace RuntimeCodegenerator
             #line hidden
             this.Write("        <li>");
             
-            #line 26 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 26 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(user.name));
             
             #line default
             #line hidden
             this.Write("<li>\r\n");
             
-            #line 27 "D:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 27 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
 
     }
 

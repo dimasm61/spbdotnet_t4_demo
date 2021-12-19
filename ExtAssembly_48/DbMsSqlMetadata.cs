@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace ExtAssembly_48
 {
+    /// <summary>
+    /// Вспомогательный класс который помогает вычитывать метаданные из MSSQL сервера
+    /// и формирует модель базы (таблицы и вьюхи) в объеме достаточном для генерации EF классов таблиц и контекста базы.
+    /// </summary>
     public static class DbMsSqlMetadata
     {
         public static List<Table> Tables = null;
@@ -34,6 +38,9 @@ namespace ExtAssembly_48
 
         }
 
+        /// <summary>
+        /// Описание таблицы MSSQL
+        /// </summary>
         public class Table
         {
             public string Schema;
@@ -46,17 +53,20 @@ namespace ExtAssembly_48
             }
         }
 
+        /// <summary>
+        /// Описание столбца в таблице mssql
+        /// </summary>
         public class Column
         {
             public string Schema;
-            public string Table;
+            public string TableName;
             public string Name;
             public string DataType;
 
             public Column(DataRow row)
             {
                 Schema = row["table_schema"].ToString();
-                Table = row["table_name"].ToString();
+                TableName = row["table_name"].ToString();
                 Name = row["column_name"].ToString();
                 DataType = row["data_type"].ToString();
             }
@@ -125,11 +135,13 @@ namespace ExtAssembly_48
 
             result = result.Replace(".", "");
 
-            result = (result == column.Table) ? $"{result}Data" : result;
+            result = (result == column.TableName) ? $"{result}Data" : result;
 
             result = !Char.IsLetter(result.ToLower()[0]) ? $"Field{result}" : result;
 
             if (column.Name == "rowguid") return "Rowguid";
+            
+            // прочие проверки
 
             return result;
         }

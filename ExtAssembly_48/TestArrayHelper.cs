@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TextTemplating;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +8,17 @@ namespace ExtAssembly_48
 {
     public static class TestArrayHelper
     {
-        public static void GenerateTestArray(TextTransformation tt, int countOfItem, int countOfTestArrayByModel, int countOfTestArrayByItem)
+        /// <summary>
+        /// Создаем набор рандомных данных
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="countOfItem"></param>
+        /// <param name="countOfTestArrayByModel"></param>
+        /// <param name="countOfTestArrayByItem"></param>
+        public static void GenerateTestArray(object context, int countOfItem, int countOfTestArrayByModel, int countOfTestArrayByItem)
         {
+            var tt = new TextTransformationProxy(context);
+
             tt.WriteLine("private static MyTestClass[] testArray = new []{");
 
             var keyList = new List<Guid>();

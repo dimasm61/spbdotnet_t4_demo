@@ -5,14 +5,16 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TextTemplating;
+
 
 namespace ExtAssembly_48
 {
     public static class FontFamiliesHelper
     {
-        public static void WriteINstalledForntCollection(TextTransformation tt, string className)
+        public static void WriteInstalledForntCollection(object context, string className)
         {
+            var tt = new TextTransformationProxy(context);
+
             tt.WriteLine($"public static class {className}"); tt.WriteLine($"{{");
             tt.PushIndent("    ");
             {

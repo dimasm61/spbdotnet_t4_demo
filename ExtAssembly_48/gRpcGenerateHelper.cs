@@ -1,19 +1,19 @@
-﻿using EnvDTE;
-using Microsoft.VisualStudio.TextTemplating;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+
 
 namespace ExtAssembly_48
 {
     public class gRpcGenerateHelper
     {
-        public static void GenerateClassesMapper(TextTransformation tt, string connStr)
+        /// <summary>
+        /// Генерация конвертеров между моделью EF и моделью gRpc
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="connStr"></param>
+        public static void GenerateClassesMapper(object context, string connStr)
         {
+            var tt = new TextTransformationProxy(context);
+
             DbMsSqlMetadata.Load(connStr);
 
             tt.WriteLine($"public static class MyConverter");
@@ -26,9 +26,9 @@ namespace ExtAssembly_48
                     tt.WriteLine($"{{");
                     tt.PushIndent("    ");
                     {
-                        var maxLen = DbMsSqlMetadata.Columns.Where(c => c.Table == table.Name).Max(c => c.Name.Length);
+                        var maxLen = DbMsSqlMetadata.Columns.Where(c => c.TableName == table.Name).Max(c => c.Name.Length);
 
-                        foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.Table == table.Name))
+                        foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.TableName == table.Name))
                         {
                             var clrFieldName = column.GetClrFieldName();
                             var clrType = column.GetClrDataType();
@@ -49,9 +49,9 @@ namespace ExtAssembly_48
                     tt.WriteLine($"{{");
                     tt.PushIndent("    ");
                     {
-                        var maxLen = DbMsSqlMetadata.Columns.Where(c => c.Table == table.Name).Max(c => c.Name.Length);
+                        var maxLen = DbMsSqlMetadata.Columns.Where(c => c.TableName == table.Name).Max(c => c.Name.Length);
 
-                        foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.Table == table.Name))
+                        foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.TableName == table.Name))
                         {
                             var clrFieldName = column.GetClrFieldName();
                             var clrType = column.GetClrDataType();
@@ -72,8 +72,15 @@ namespace ExtAssembly_48
             tt.WriteLine($"}}");
         }
 
-        public static void GenerateGRpcServiceBody(TextTransformation tt, string connStr)
+        /// <summary>
+        /// Генерация proto файла с перечнем методов службы
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="connStr"></param>
+        public static void GenerateGRpcServiceBody(object context, string connStr)
         {
+            var tt = new TextTransformationProxy(context);
+
             DbMsSqlMetadata.Load(connStr);
 
             foreach (var table in DbMsSqlMetadata.Tables)
@@ -83,8 +90,15 @@ namespace ExtAssembly_48
             }
         }
 
-        public static void GenerateGRpcClasses(TextTransformation tt, string connStr)
+        /// <summary>
+        /// Генерация proto файла со сообщениями
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="connStr"></param>
+        public static void GenerateGRpcClasses(object context, string connStr)
         {
+            var tt = new TextTransformationProxy(context);
+
             DbMsSqlMetadata.Load(connStr);
 
             foreach (var table in DbMsSqlMetadata.Tables)
@@ -93,7 +107,7 @@ namespace ExtAssembly_48
                 tt.PushIndent("    ");
                 {
                     var cn = 1;
-                    foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.Table == table.Name))
+                    foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.TableName == table.Name))
                     {
                         var clrFieldName = column.GetClrFieldName();
                         var clrType = column.GetClrDataType();
@@ -119,8 +133,15 @@ namespace ExtAssembly_48
             }
         }
 
-        public static void GenerateDbClasses(TextTransformation tt, string connStr)
+        /// <summary>
+        /// Генерация классов EF модели по табличкам
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="connStr"></param>
+        public static void GenerateDbClasses(object context, string connStr)
         {
+            var tt = new TextTransformationProxy(context);
+
             DbMsSqlMetadata.Load(connStr);
 
             foreach (var table in DbMsSqlMetadata.Tables)
@@ -130,7 +151,7 @@ namespace ExtAssembly_48
                 tt.WriteLine($"{{");
                 tt.PushIndent("    ");
                 {
-                    foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.Table == table.Name))
+                    foreach (var column in DbMsSqlMetadata.Columns.Where(c => c.TableName == table.Name))
                     {
                         var clrFieldName = column.GetClrFieldName();
                         var clrType = column.GetClrDataType();
@@ -146,6 +167,12 @@ namespace ExtAssembly_48
             }
         }
 
+        /// <summary>
+        /// Соответствие типов CLR & gRpc
+        /// </summary>
+        /// <param name="clrDataType"></param>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
         private static string GetCastToDbTypeString(string clrDataType, string fieldName)
         {
             switch (clrDataType)
@@ -156,7 +183,6 @@ namespace ExtAssembly_48
                 case "decimal": return $"(double)source.{fieldName}";
                 default: return $"source.{fieldName}";
             }
-            return fieldName;
         }
 
         private static string GetCastToGRpcTypeString(string clrDataType, string fieldName)
@@ -171,7 +197,6 @@ namespace ExtAssembly_48
                 case "decimal": return $"(decimal)source.{fieldName}";
                 default: return $"source.{fieldName}";
             }
-            return fieldName;
         }
 
     }
