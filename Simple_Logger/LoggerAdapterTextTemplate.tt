@@ -1,0 +1,75 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+    // Nick Chapsas: You are doing .NET logging wrong. Let's fix it
+    // https://www.youtube.com/watch?v=bnVfrd3lRv8
+    
+    var mList = new[] {"Trace", "Debug", "Information", "Warning", "Error"};
+    var argCount = 4;
+#>
+using Microsoft.Extensions.Logging;
+// ReSharper disable TemplateIsNotCompileTimeConstantProblem
+namespace Simple_Logger
+{
+    public interface ILoggerAdapter<T>
+    {
+<#
+    foreach (var m in mList)
+    {
+#>
+        void Log<#= m #>(string msg);
+<#
+        for (var i = 1; i <= argCount; i++)
+        {
+            var s1 = Enumerable.Range(0, i).Select(c => $"T{c}").Aggregate((k, n) => $"{k}, {n}");
+            var s2 = Enumerable.Range(0, i).Select(c => $"T{c} arg{c}").Aggregate((k, n) => $"{k}, {n}");
+#>
+        void Log<#= m #><<#= s1 #>>(string msg,<#= s2 #>);
+<#
+        }
+    }
+#>
+    }
+
+    public class LoggerAdapter<T>: ILoggerAdapter<T>
+    {
+        private readonly ILogger<T> _logger;
+       
+        public LoggerAdapter(ILogger<T> logger)
+        {
+            _logger = logger;
+        }
+<#
+    foreach (var m in mList)
+    {
+#>
+
+        public void Log<#= m #>(string msg)
+        {
+            if(_logger.IsEnabled(LogLevel.<#=m#>))
+                _logger.Log<#=m#>(msg);
+        }
+<#
+        for (var i = 1; i <= argCount; i++)
+        {
+            var s1 = Enumerable.Range(0, i).Select(c => $"T{c}").Aggregate((k, n) => $"{k}, {n}");
+            var s2 = Enumerable.Range(0, i).Select(c => $"T{c} arg{c}").Aggregate((k, n) => $"{k}, {n}");
+            var s3 = Enumerable.Range(0, i).Select(c => $"arg{c}").Aggregate((k, n) => $"{k}, {n}");
+#>
+
+        public void Log<#= m #><<#= s1 #>>(string msg,<#= s2 #>)
+        {
+            if(_logger.IsEnabled(LogLevel.<#=m#>))
+                _logger.Log<#=m#>(msg,<#=s3#>);
+        }
+<#
+        }
+    }
+#>
+    }
+
+}
