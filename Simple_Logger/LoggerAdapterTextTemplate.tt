@@ -6,9 +6,9 @@
 <#@ output extension=".cs" #>
 <#
     // Nick Chapsas: You are doing .NET logging wrong. Let's fix it
-    // https://www.youtube.com/watch?v=bnVfrd3lRv8
+    // https://youtu.be/bnVfrd3lRv8?t=1243
     
-    var mList = new[] {"Trace", "Debug", "Information", "Warning", "Error"};
+    var mList = new[] {"Debug", "Information", "Warning", "Error"};
     var argCount = 4;
 #>
 using Microsoft.Extensions.Logging;

@@ -1,20 +1,12 @@
-﻿<#@ template language="C#" #>
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-
-<html>
-<body>
-    <ul>
-<#  
-    foreach(var user in UserList)
-    {
-#>
-        <li><#=user.name#><li>
-<#
+<#@ output extension=".cs" #>
+namespace Hello
+{
+    public enum MyEnum0 {
+        enum_01, enum_02
     }
-#>
-    </ul>
-</body>
-</html>
+}

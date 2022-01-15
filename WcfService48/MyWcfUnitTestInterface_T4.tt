@@ -9,15 +9,12 @@
 <#@ import namespace="Newtonsoft.Json" #>
 <#@ output extension=".cs" #>
 <#@ include file="WcfMetadataModel.ttInclude" #>
-
 using System;
 using System.Collections.Generic; 
-using System.ServiceModel;
 
 namespace WcfService48
 {
-    [ServiceContract]
-    public interface IMyWcfService
+    public interface ITestOfMyWcfService
     {
 <#
     // hostspecific template directive should be "true"
@@ -32,8 +29,7 @@ namespace WcfService48
     {
 #>
         /// <summary><#=a.Comment#></summary>
-        [OperationContract]
-        <#=a.ReturnType #> <#=a.Name#> (<#=a.ArgListStr #>);
+        void TestOf_<#=a.Name#>_Method();
 
 <#
     }

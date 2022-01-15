@@ -1,6 +1,6 @@
 ﻿[
     {
-        "Comment": "Получения списка сообщений.",
+        "Comment": "Получение списка сообщений.",
         "ReturnType": "List<string>",
         "Name": "GetMessagePage",
         "ArgList": [
@@ -12,7 +12,7 @@
         "GenerateIn": "iface,client"
     },
     {
-        "Comment": "Получения списка сообщений из архива",
+        "Comment": "Получение списка сообщений из архива",
         "ReturnType": "List<string>",
         "Name": "GetMessageArchivePage",
         "ArgList": [

@@ -4,11 +4,6 @@ namespace Simple_Logger
 {
     public interface ILoggerAdapter<T>
     {
-        void LogTrace(string msg);
-        void LogTrace<T0>(string msg,T0 arg0);
-        void LogTrace<T0, T1>(string msg,T0 arg0, T1 arg1);
-        void LogTrace<T0, T1, T2>(string msg,T0 arg0, T1 arg1, T2 arg2);
-        void LogTrace<T0, T1, T2, T3>(string msg,T0 arg0, T1 arg1, T2 arg2, T3 arg3);
         void LogDebug(string msg);
         void LogDebug<T0>(string msg,T0 arg0);
         void LogDebug<T0, T1>(string msg,T0 arg0, T1 arg1);
@@ -38,36 +33,6 @@ namespace Simple_Logger
         public LoggerAdapter(ILogger<T> logger)
         {
             _logger = logger;
-        }
-
-        public void LogTrace(string msg)
-        {
-            if(_logger.IsEnabled(LogLevel.Trace))
-                _logger.LogTrace(msg);
-        }
-
-        public void LogTrace<T0>(string msg,T0 arg0)
-        {
-            if(_logger.IsEnabled(LogLevel.Trace))
-                _logger.LogTrace(msg,arg0);
-        }
-
-        public void LogTrace<T0, T1>(string msg,T0 arg0, T1 arg1)
-        {
-            if(_logger.IsEnabled(LogLevel.Trace))
-                _logger.LogTrace(msg,arg0, arg1);
-        }
-
-        public void LogTrace<T0, T1, T2>(string msg,T0 arg0, T1 arg1, T2 arg2)
-        {
-            if(_logger.IsEnabled(LogLevel.Trace))
-                _logger.LogTrace(msg,arg0, arg1, arg2);
-        }
-
-        public void LogTrace<T0, T1, T2, T3>(string msg,T0 arg0, T1 arg1, T2 arg2, T3 arg3)
-        {
-            if(_logger.IsEnabled(LogLevel.Trace))
-                _logger.LogTrace(msg,arg0, arg1, arg2, arg3);
         }
 
         public void LogDebug(string msg)

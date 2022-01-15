@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="DemoCountryEnum_T4.tt">
       <LastGenOutput>DemoCountryEnum_T4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>

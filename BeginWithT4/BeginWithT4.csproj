@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Update="TextTemplate0.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>TextTemplate0.cs</LastGenOutput>
+      </None>
+      <None Update="TextTemplate1.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>TextTemplate1.cs</LastGenOutput>
+      </None>
+      <None Update="TextTemplate2.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>TextTemplate2.txt</LastGenOutput>
+      </None>
+      <None Update="TextTemplate2.txt">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>TextTemplate2.tt</DependentUpon>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="TextTemplate0.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>TextTemplate0.tt</DependentUpon>
+      </Compile>
+      <Compile Update="TextTemplate1.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>TextTemplate1.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

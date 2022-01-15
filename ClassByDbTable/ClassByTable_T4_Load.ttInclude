@@ -81,7 +81,63 @@
             result = $"field{result}";
         }
 
+        if(result.ToLower() == "class") result = $"{result}Item";
+
         return result;
     }
 
+
+    public static string ConvertDbTypeToTs(string dbType)
+    {
+        var result= "";
+        switch (dbType)
+        {
+            case "image"           : result = "number[]"        ; break;
+            case "text"            : result = "string"        ; break;
+            case "binary"          : result = "number[]"        ; break;
+            case "tinyint"         : result = "number"          ; break;
+            case "date"            : result = "any"      ; break;
+            case "time"            : result = "any"      ; break;
+            case "bit"             : result = "number"          ; break;
+            case "smallint"        : result = "number"         ; break;
+            case "decimal"         : result = "number"       ; break;
+            case "int"             : result = "number"           ; break;
+            case "smalldatetime"   : result = "any"      ; break;
+            case "real"            : result = "number"         ; break;
+            case "money"           : result = "number"       ; break;
+            case "datetime"        : result = "number"      ; break;
+            case "float"           : result = "number"        ; break;
+            case "numeric"         : result = "number"        ; break;
+            case "smallmoney"      : result = "number"       ; break;
+            case "datetime2"       : result = "any"      ; break;
+            case "bigint"          : result = "number"          ; break;
+            case "varbinary"       : result = "number[]"        ; break;
+            case "timestamp"       : result = "number[]"        ; break;
+            case "sysname"         : result = "string"        ; break;
+            case "nvarchar"        : result = "string"        ; break;
+            case "varchar"         : result = "string"        ; break;
+            case "ntext"           : result = "string"        ; break;
+            case "uniqueidentifier": result = "string"          ; break;
+            case "datetimeoffset"  : result = "any";       break;
+            case "sql_variant"     : result = "any"        ; break;
+            case "xml"             : result = "string"        ; break;
+
+            case "char": result =  "string"; break;
+
+            case "nchar": result = "string"; break;
+
+            //hierarchyid
+            //geometry
+            //geography
+            default: result = "any"; break;
+        }
+
+        return result;
+    }
+
+    public static string ToPrivateName(string propName)
+    {
+       var charOne = char.ToLower(propName[0]);
+       return $"{charOne}{propName.Substring(1, propName.Length-1)}";
+    }
 #>

@@ -7,7 +7,6 @@
 <#@ import namespace="System.IO" #>
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
 <# 
-	// Author - AnatolyKulakov
 	// https://github.com/kulakovt/TransportTycoon/blob/master/src/TransportTycoon/Templates/VisualStudioHelper.ttinclude
 
 	// create an instance of the AutomationHelper class so 

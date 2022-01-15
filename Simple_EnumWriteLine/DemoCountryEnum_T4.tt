@@ -17,7 +17,7 @@
             , "DEU:Germany;"
             , "POL:Poland;"
             , "RUS:Russian Federation;"}; 
-
+    
     WriteLine($"namespace MyCodegeneratorUsing");
     WriteLine($"{{");
     PushIndent("    ");

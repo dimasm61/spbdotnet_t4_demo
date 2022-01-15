@@ -26,6 +26,10 @@
       <LastGenOutput>DbContextByTable_T4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
+    <None Update="TsClassByTable_T4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TsClassByTable_T4.ts</LastGenOutput>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +38,14 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="TsClassByTable_T4.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TsClassByTable_T4.tt</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
 
 </Project>

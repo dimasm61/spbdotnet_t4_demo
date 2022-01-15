@@ -3,12 +3,12 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ include file="VisualStudioHelper.ttinclude" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="EnvDte" #>
 <#@ assembly name="VSLangProj" #>
 <#@ import namespace="EnvDTE" #>
 <#@ output extension=".cs" #>
+<#@ include file="VisualStudioHelper.ttinclude" #>
 
 <#
     var VisualStudio = new AutomationHelper(this.Host);

@@ -1,0 +1,31 @@
+﻿<#+
+    public class ClassA{
+
+        public string Key;
+        public string ModelKey;
+        public string CarName;
+        public string BuildYear;
+        public string SaleDate;
+
+        private static Random Rnd = new Random();
+
+        private static string AllowedChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789!@$?_-";
+
+
+        public static Guid[] Models = new[]{Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()};
+
+        public static ClassA GetNextRandomData(Guid key)
+        {
+            var result = new ClassA();
+
+            result.Key = key.ToString();
+            result.ModelKey = Models.OrderBy(c=> Guid.NewGuid()).FirstOrDefault().ToString();
+            result.CarName= string.Join("", Enumerable.Repeat(0, 50).Select(n => AllowedChars[Rnd.Next(60)]));
+            result.BuildYear = Rnd.Next(1990, 2020).ToString();
+            result.SaleDate = $"new DateTime({Rnd.Next(int.Parse(result.BuildYear), 2020)}, {Rnd.Next(1, 12):00}, {Rnd.Next(1, 28):00})";
+
+            return result;
+        }
+    }
+
+#>

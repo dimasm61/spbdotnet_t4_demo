@@ -10,9 +10,6 @@ namespace ExtAssembly_48
 {
     public static class WcfGenerateHelper
     {
-        /// <summary>
-        /// Класс описывающий сигнатуру метода
-        /// </summary>
         public class MetadataItem
         {
             public string ReturnType { get; set; }
@@ -39,14 +36,9 @@ namespace ExtAssembly_48
             }
         }
 
-        /// <summary>
-        /// Генерируем интервейс на основе json списка экземпляров типа MetadataItem
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="fileName"></param>
-        public static void GenerateInterfaceWrapper(object context, string fileName)
+        public static void GenerateInterfaceWrapper(object ttContext, string fileName)
         {
-            var tt = new TextTransformationProxy(context);
+            var tt = TextTransformationProxy.GetProxy(ttContext);
 
             var str = File.ReadAllText(fileName);
 
@@ -59,14 +51,9 @@ namespace ExtAssembly_48
             }
         }
 
-        /// <summary>
-        /// Генерируем "типовой" слой для реализации WCF службы на основе json списка экземпляров типа MetadataItem
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="fileName"></param>
-        public static void GenerateServiceWrapper(object context, string fileName)
+        public static void GenerateServiceWrapper(object ttContext, string fileName)
         {
-            var tt = new TextTransformationProxy(context);
+            var tt = TextTransformationProxy.GetProxy(ttContext);
 
             var str = File.ReadAllText(fileName);
 
@@ -78,16 +65,16 @@ namespace ExtAssembly_48
             }
         }
 
-        private static void GenerateWrapperMethod(object context, MetadataItem item)
+        private static void GenerateWrapperMethod(TextTransformationProxy tt, MetadataItem item)
         {
-            var tt = new TextTransformationProxy(context);
 
             tt.WriteLine($"/// <summary>{item.Comment}</summary> ");
             tt.WriteLine($"public {item.ReturnType} {item.Name}({item.ArgListStr})");
             tt.WriteLine($"{{");
             tt.PushIndent("    ");
             {
-                tt.WriteLine($"if (LogInformationEnabled) _logger.Information(\"{{Method}} start\", nameof({item.Name}));");
+                tt.WriteLine(
+                    $"if (LogInformationEnabled) _logger.Information(\"{{Method}} start\", nameof({item.Name}));");
                 tt.WriteLine($"Stopwatch sw = null;");
                 tt.WriteLine($"if(LogVerboseEnabled || LogDebugEnabled)");
                 tt.WriteLine($"    sw = Stopwatch.StartNew();");
@@ -102,6 +89,7 @@ namespace ExtAssembly_48
                         var argName = argStr.Split(':')[1];
                         tt.WriteLine($"    + $\"{argName}:{{{argName}}}, \"");
                     }
+
                     tt.WriteLine($"    , nameof({item.Name}));");
                     tt.WriteLine($"");
 
@@ -112,13 +100,13 @@ namespace ExtAssembly_48
                     tt.WriteLine($"            return _impl.{item.Name}(db, {item.ArgListWithoutTypeStr});");
                     tt.WriteLine($"        }}");
                     tt.WriteLine($"    }});");
-
                 }
                 tt.PopIndent();
                 tt.WriteLine($"}}");
                 tt.WriteLine($"catch(BrokenCircuitException bcex)");
                 tt.WriteLine($"{{");
-                tt.WriteLine($"    _logger.Warning($\"{{{{Method}}}} {{nameof(BrokenCircuitException)}}, return empty\", nameof({item.Name}));");
+                tt.WriteLine(
+                    $"    _logger.Warning($\"{{{{Method}}}} {{nameof(BrokenCircuitException)}}, return empty\", nameof({item.Name}));");
                 tt.WriteLine($"    return new {item.ReturnType}();");
                 tt.WriteLine($"}}");
                 tt.WriteLine($"catch(Exception ex)");
@@ -131,24 +119,20 @@ namespace ExtAssembly_48
                 tt.WriteLine($"    if(LogVerboseEnabled || LogDebugEnabled) ");
                 tt.WriteLine($"    {{");
                 tt.WriteLine($"        sw.Stop();");
-                tt.WriteLine($"        _logger.Debug(\"{{Method}} finish, {{Duration}} ms\", nameof({item.Name}), sw.ElapsedMilliseconds);");
+                tt.WriteLine(
+                    $"        _logger.Debug(\"{{Method}} finish, {{Duration}} ms\", nameof({item.Name}), sw.ElapsedMilliseconds);");
                 tt.WriteLine($"    }}");
                 tt.WriteLine($"}}");
             }
             tt.PopIndent();
             tt.WriteLine($"}}");
-
         }
 
-        /// <summary>
-        /// Генерируем WCF клиент с polly на основе json списка экземпляров типа MetadataItem
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="fileName"></param>
-        public static void GenerateClient(object context, string fileName)
-        {
-            var tt = new TextTransformationProxy(context);
 
+        public static void GenerateClient(object ttContext, string fileName)
+        {
+            var tt = TextTransformationProxy.GetProxy(ttContext);
+            
             var str = File.ReadAllText(fileName);
 
             var items = JsonSerializer.Deserialize<List<MetadataItem>>(str);
@@ -159,22 +143,17 @@ namespace ExtAssembly_48
             }
         }
 
-        private static void GenerateClientMethod(object context, MetadataItem item)
+        private static void GenerateClientMethod(TextTransformationProxy tt, MetadataItem item)
         {
-            var tt = new TextTransformationProxy(context);
-
             tt.WriteLine($"/// <summary>{item.Comment}</summary> ");
             tt.WriteLine($"public {item.ReturnType} {item.Name}({item.ArgListStr})");
             tt.WriteLine($"{{");
             tt.PushIndent("    ");
             {
-
                 tt.WriteLine($"return _policy.Execute(() => base.Channel.{item.Name}({item.ArgListWithoutTypeStr}));");
             }
             tt.PopIndent();
             tt.WriteLine($"}}");
-
         }
-
     }
 }

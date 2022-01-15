@@ -8,7 +8,7 @@ namespace ExtAssemblyWcf_48
 {
     public partial class MyWcfServiceWrapper
     {
-        /// <summary>Получения списка сообщений.</summary> 
+        /// <summary>Получение списка сообщений.</summary> 
         public List<string> GetMessagePage(int take, int skip, string textFilter, int? mmsi)
         {
             if (LogInformationEnabled) _logger.Information("{Method} start", nameof(GetMessagePage));
@@ -52,7 +52,7 @@ namespace ExtAssemblyWcf_48
                 }
             }
         }
-        /// <summary>Получения списка сообщений из архива</summary> 
+        /// <summary>Получение списка сообщений из архива</summary> 
         public List<string> GetMessageArchivePage(int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo, int? mmsi)
         {
             if (LogInformationEnabled) _logger.Information("{Method} start", nameof(GetMessageArchivePage));

@@ -6,9 +6,10 @@
 <#@ output extension=".cs" #>
 <#
     var metaData = new[]{
-              "field ;Guid  ; CarGuid     ; Код машины"
-            , "prop  ;int   ; CarBuildYear; Год постройки машины"
-            , "propN ;string; Model       ; Модель"
+              "field ;Guid    ; CarGuid     ; Код машины"
+            , "prop  ;int     ; CarBuildYear; Год постройки машины"
+            , "propN ;string  ; Model       ; Модель"
+            , "propN ;DateTime; SaleDate    ; Дата продажи"
             };
 #>
 using System;

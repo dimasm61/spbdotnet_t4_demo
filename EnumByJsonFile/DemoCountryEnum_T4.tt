@@ -4,10 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
-<#@ assembly name="NetStandard" #>
-<#@ assembly name="System.Memory" #>
-<#@ assembly name="System.Text.Json" #>
-<#@ import namespace="System.Text.Json" #>
+<#@ assembly name="$(SolutionDir)\Newtonsoft.Json.dll" #>
+<#@ import namespace="Newtonsoft.Json" #>
 <#@ output extension=".cs" #>
 <#@ include file="DemoCountryEnum_Template.ttInclude" #>
 
@@ -16,13 +14,14 @@ namespace MyCodegeneratorUsing
     enum DemoCountryEnum
     {
 <#
+    // assembly name="$(SolutionDir)\Newtonsoft.Json.dll" 
     // hostspecific template directive should be "true"
     string solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
     var fileName =  $"{solutionPath}\\EnumByJsonFile\\Metadata.json";
 
     var str = File.ReadAllText(fileName);
 
-    var items = JsonSerializer.Deserialize<List<MetadataItem>>(str);
+    var items = JsonConvert.DeserializeObject<List<MetadataItem>>(str);
     
     foreach(var a in items)
     {

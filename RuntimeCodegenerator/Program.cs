@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace RuntimeCodegenerator
 {
@@ -6,11 +9,20 @@ namespace RuntimeCodegenerator
     {
         static void Main(string[] args)
         {
-            var template = new RuntimeTextTemplate1();
+            // https://jsonplaceholder.typicode.com/
+            var url = "https://jsonplaceholder.typicode.com/users";
 
-            var str = template.TransformText();
-
-            Console.WriteLine(str);
+            // using var client = new HttpClient();
+            //
+            // var jsonStr = client.GetStringAsync(url).GetAwaiter().GetResult();
+            //
+            // var users = JsonSerializer.Deserialize<List<User>>(jsonStr);
+            //
+            // var template = new RuntimeTextTemplate1(users);
+            //
+            // var str = template.TransformText();
+            //
+            // Console.WriteLine(str);
 
             Console.ReadLine();
         }

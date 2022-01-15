@@ -12,10 +12,6 @@ namespace RuntimeCodegenerator
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
-    using System.Net;
-    using System.IO;
-    using System.Net.Http;
-    using System.Text.Json;
     using System;
     
     /// <summary>
@@ -32,20 +28,11 @@ namespace RuntimeCodegenerator
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("<html>\r\n<body>\r\n    <ul>\r\n");
+            this.Write("\r\n<html>\r\n<body>\r\n    <ul>\r\n");
             
-            #line 13 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 10 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
   
-    // https://jsonplaceholder.typicode.com/
-    var url = "https://jsonplaceholder.typicode.com/users";
-    
-    using var client = new HttpClient();
-
-    var jsonStr = client.GetStringAsync(url).GetAwaiter().GetResult();
-
-    var users = JsonSerializer.Deserialize<List<RuntimeCodegenerator.User>>(jsonStr);
-
-    foreach(var user in users)
+    foreach(var user in UserList)
     {
 
             
@@ -53,14 +40,14 @@ namespace RuntimeCodegenerator
             #line hidden
             this.Write("        <li>");
             
-            #line 26 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 14 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(user.name));
             
             #line default
             #line hidden
             this.Write("<li>\r\n");
             
-            #line 27 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
+            #line 15 "C:\Git\spbdotnet_t4_demo\RuntimeCodegenerator\RuntimeTextTemplate1.tt"
 
     }
 

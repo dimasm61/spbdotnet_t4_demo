@@ -27,6 +27,20 @@ namespace Simple_Class
         }
 
 
+        private DateTime _SaleDate; 
+        ///<summary>Дата продажи</summary>
+        public DateTime SaleDate 
+        {
+            get => _SaleDate; 
+            set
+            {
+                if(value == _SaleDate) return;
+                _SaleDate = value;
+                OnPropChanged("SaleDate");
+            }
+        }
+
+
         public DemoCarClass() {}
 
         public DemoCarClass(DemoCarClass source)
@@ -34,6 +48,7 @@ namespace Simple_Class
             this.CarGuid = source.CarGuid;
             this.CarBuildYear = source.CarBuildYear;
             this.Model = source.Model;
+            this.SaleDate = source.SaleDate;
         }
 
     }

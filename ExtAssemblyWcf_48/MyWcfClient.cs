@@ -1,5 +1,6 @@
 ﻿using Polly;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace ExtAssemblyWcf_48
@@ -13,6 +14,12 @@ namespace ExtAssemblyWcf_48
             _policy = Policy
                 .Handle<System.TimeoutException>()
                 .CircuitBreaker(10, TimeSpan.FromSeconds(60));
+        }
+        
+        
+        public List<string> GetMessagePageWithRetry(int take, int skip, string textFilter, int? mmsi)
+        {
+            return _policy.Execute(() => base.Channel.GetMessagePage(take, skip, textFilter, mmsi));
         }
     }
 }
