@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
+<#@ include file="T4Classes.ttInclude" #>
 
 namespace MyCodegeneratorUsing
 {
@@ -20,13 +21,15 @@ namespace MyCodegeneratorUsing
         , "FRA:France;"
         , "DEU:Germany;"
         , "POL:Poland;"
-        , "RUS:Russian Federation;"}; 
+        , "RUS:Russian Federation;"
+        }; 
 
     foreach(var a in metadata)
     {
         var b = a.Split(':');
+        var aa = new A();
 #>
-
+ 
         /// <summary><#=b[1] #></summary>
         <#=b[0]#>,
 <#
@@ -34,3 +37,4 @@ namespace MyCodegeneratorUsing
 #>
     } 
 }
+

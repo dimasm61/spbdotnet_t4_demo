@@ -7,9 +7,9 @@ using Polly.CircuitBreaker;
 
 namespace WcfService48
 {
-    public partial class MyWcfServiceWrapper
+    public partial class MyWcfService
     {
-        /// <summary>Получения списка сообщений.</summary>
+        /// <summary>Получение списка сообщений.</summary>
         public List<string> GetMessagePage (int take, int skip, string textFilter, int? mmsi)
         {
             if (LogInformationEnabled) _logger.Information("{Method} start", nameof(GetMessagePage));
@@ -52,7 +52,7 @@ namespace WcfService48
 
             return null;
         }
-        /// <summary>Получения списка сообщений из архива</summary>
+        /// <summary>Получение списка сообщений из архива</summary>
         public List<string> GetMessageArchivePage (int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo, int? mmsi)
         {
             if (LogInformationEnabled) _logger.Information("{Method} start", nameof(GetMessageArchivePage));
@@ -92,6 +92,50 @@ namespace WcfService48
                 {
                     sw.Stop();
                     if (LogDebugEnabled) _logger.Debug("{Method} finish, {Duration} ms", nameof(GetMessageArchivePage), sw.ElapsedMilliseconds);
+                }
+            }
+
+            return null;
+        }
+        /// <summary>Получение статистики сообщений</summary>
+        public List<string> GetMessageStatPage (int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (LogInformationEnabled) _logger.Information("{Method} start", nameof(GetMessageStatPage));
+            Stopwatch sw = null;
+            if(IsTrace)
+                sw = Stopwatch.StartNew();
+            try
+            {
+                if (LogVerboseEnabled) _logger.Verbose($"{{Method}} args: "
+                    + $"take:{take}, "
+                    + $"skip:{skip}, "
+                    + $"textFilter:{textFilter}, "
+                    + $"dateFrom:{dateFrom}, "
+                    + $"dateTo:{dateTo}, "
+                    , nameof(GetMessageStatPage));
+
+                using(var db = new DbContext())
+                {
+                    return _policy.Execute(() => _impl.GetMessageStatPage(db, take, skip, textFilter, dateFrom, dateTo));
+                }
+            }
+            catch(BrokenCircuitException bcex)
+            {
+                _logger.Warning($"{{Method}} {nameof(BrokenCircuitException)}, return empty", nameof(GetMessageStatPage));
+                return new List<string>();
+            }
+            catch(Exception ex)
+            {
+                if(IsTrace) sw.Stop();
+
+               _logger.Error(ex, nameof(GetMessageStatPage));
+            }
+            finally
+            {
+                if(IsTrace) 
+                {
+                    sw.Stop();
+                    if (LogDebugEnabled) _logger.Debug("{Method} finish, {Duration} ms", nameof(GetMessageStatPage), sw.ElapsedMilliseconds);
                 }
             }
 

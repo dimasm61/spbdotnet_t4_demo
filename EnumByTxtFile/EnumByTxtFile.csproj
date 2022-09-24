@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="CurrentDir.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CurrentDir.txt</LastGenOutput>
+    </None>
+    <None Update="CurrentDir.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CurrentDir.tt</DependentUpon>
+    </None>
     <None Update="DemoCountryEnum_T4.tt">
       <LastGenOutput>DemoCountryEnum_T4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>

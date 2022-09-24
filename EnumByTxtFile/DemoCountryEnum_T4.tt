@@ -8,11 +8,14 @@
 
 namespace MyCodegeneratorUsing
 {
-    enum DemoCountryEnum
-    {
 <#
     // hostspecific template directive should be "true"
     string solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
+#>
+    enum DemoCountryEnum
+    {
+<#
+
     var fileName =  $"{solutionPath}\\EnumByTxtFile\\Metadata.txt";
     var lines = File.ReadAllLines(fileName);
 

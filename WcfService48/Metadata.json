@@ -24,5 +24,18 @@
             "int?:mmsi"
         ],
         "GenerateIn": "iface,client"
+    },
+    {
+        "Comment": "Получение статистики сообщений",
+        "ReturnType": "List<string>",
+        "Name": "GetMessageStatPage",
+        "ArgList": [
+            "int:take",
+            "int:skip",
+            "string:textFilter",
+            "DateTime?:dateFrom",
+            "DateTime?:dateTo"            
+        ],
+        "GenerateIn": "iface,client"
     }
 ]

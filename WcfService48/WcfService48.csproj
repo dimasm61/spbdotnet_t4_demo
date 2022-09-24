@@ -71,13 +71,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyWcfClient_T4.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyWcfServiceWrapper_T4.cs">
-      <DependentUpon>MyWcfServiceWrapper_T4.tt</DependentUpon>
+    <Compile Include="MyWcfServiceImpl_T4.cs">
+      <DependentUpon>MyWcfServiceImpl_T4.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="MyWcfServiceWrapper.cs" />
-    <Compile Include="MyWcfServiceImpl.cs" />
+    <Compile Include="MyWcfService_T4.cs">
+      <DependentUpon>MyWcfService_T4.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MyWcfService.cs" />
+    <Compile Include="DbContext.cs" />
     <Compile Include="MyWcfInterface_T4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -97,9 +102,13 @@
     <None Include="WcfMetadataModel.ttInclude" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyWcfServiceWrapper_T4.tt">
+    <Content Include="MyWcfServiceImpl_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyWcfServiceWrapper_T4.cs</LastGenOutput>
+      <LastGenOutput>MyWcfServiceImpl_T4.cs</LastGenOutput>
+    </Content>
+    <Content Include="MyWcfService_T4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MyWcfService_T4.cs</LastGenOutput>
     </Content>
     <Content Include="MyWcfClient_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

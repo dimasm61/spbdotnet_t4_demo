@@ -1,0 +1,7 @@
+﻿<#+ 
+    // include file="T4Classes.ttInclude" 
+    public class A
+    {
+      public int B;
+    }
+#>

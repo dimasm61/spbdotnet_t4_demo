@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="DemoCountryEnum_T4.tt">
-      <LastGenOutput>DemoCountryEnum_T4.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
@@ -21,6 +14,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DemoCountryEnum_T4.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DemoCountryEnum_T4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DemoCountryEnum_T4.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@
 <#@ output extension=".cs" #>
 <#
     // Nick Chapsas: You are doing .NET logging wrong. Let's fix it
-    // https://youtu.be/bnVfrd3lRv8?t=1243
+    // https://youtu.be/bnVfrd3lRv8?t=242
     
     var mList = new[] {"Debug", "Information", "Warning", "Error"};
     var argCount = 4;

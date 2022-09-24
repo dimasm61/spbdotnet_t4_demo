@@ -12,5 +12,8 @@ namespace WcfService48
         /// <summary>Получение списка сообщений из архива</summary>
         void TestOf_GetMessageArchivePage_Method();
 
+        /// <summary>Получение статистики сообщений</summary>
+        void TestOf_GetMessageStatPage_Method();
+
     } 
 }

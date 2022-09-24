@@ -14,8 +14,8 @@ namespace Simple_TestBenchmark
     {
         private static MyTestClass[] testArray = new []{
 <#
-    var countOfItem = 10000;
-    var countOfTestByItem  = 20000;
+    var countOfItem = 100;
+    var countOfTestByItem  = 300;
 
     var keyList = new List<Guid>();
     var k = "";

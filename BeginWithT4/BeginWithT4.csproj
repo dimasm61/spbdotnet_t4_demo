@@ -2,15 +2,27 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="TextTemplate0.tt">
-        <Generator>TextTemplatingFileGenerator</Generator>
-        <LastGenOutput>TextTemplate0.cs</LastGenOutput>
+      <PackageReference Include="System.CodeDom" Version="6.0.0" />
+    </ItemGroup>
+
+    <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <PropertyGroup>
+        <TransformOnBuild>true</TransformOnBuild>
+    </PropertyGroup>
+    <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets" />-->
+                     
+    <!-- "$(MSBuildBinPath)\msbuild" "$(SolutionPath)" /t:$(ProjectName):Transform /p:TransformFile="AppDbContext.tt" /p:CustomAfterMicrosoftCommonTargets="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets"
+ -->
+
+    <ItemGroup>
+      <None Update="RuntimeTextTemplate1.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>RuntimeTextTemplate1.cs</LastGenOutput>
       </None>
       <None Update="TextTemplate1.tt">
         <Generator>TextTemplatingFileGenerator</Generator>
@@ -18,26 +30,52 @@
       </None>
       <None Update="TextTemplate2.tt">
         <Generator>TextTemplatingFileGenerator</Generator>
-        <LastGenOutput>TextTemplate2.txt</LastGenOutput>
+        <LastGenOutput>TextTemplate2.cs</LastGenOutput>
       </None>
-      <None Update="TextTemplate2.txt">
-        <AutoGen>True</AutoGen>
-        <DesignTime>True</DesignTime>
-        <DependentUpon>TextTemplate2.tt</DependentUpon>
+      <None Update="TextTemplate3.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>TextTemplate3.cs</LastGenOutput>
+      </None>
+      <None Update="TextTemplate4.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>TextTemplate4.cs</LastGenOutput>
       </None>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="TextTemplate0.cs">
-        <AutoGen>True</AutoGen>
+      <Compile Update="RuntimeTextTemplate1.cs">
         <DesignTime>True</DesignTime>
-        <DependentUpon>TextTemplate0.tt</DependentUpon>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>RuntimeTextTemplate1.tt</DependentUpon>
       </Compile>
       <Compile Update="TextTemplate1.cs">
         <AutoGen>True</AutoGen>
         <DesignTime>True</DesignTime>
         <DependentUpon>TextTemplate1.tt</DependentUpon>
       </Compile>
+      <Compile Update="TextTemplate2.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TextTemplate2.tt</DependentUpon>
+      </Compile>
+      <Compile Update="TextTemplate3.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TextTemplate3.tt</DependentUpon>
+      </Compile>
+      <Compile Update="TextTemplate4.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TextTemplate4.tt</DependentUpon>
+      </Compile>
     </ItemGroup>
+
+    <ItemGroup>
+      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+      <Exec Command="&quot;$(MSBuildBinPath)\msbuild&quot; &quot;$(SolutionPath)&quot; /t:$(ProjectName):Transform /p:TransformFile=&quot;TextTemplate1.tt&quot; /p:CustomAfterMicrosoftCommonTargets=&quot;$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets&quot;" />
+    </Target>
 
 </Project>

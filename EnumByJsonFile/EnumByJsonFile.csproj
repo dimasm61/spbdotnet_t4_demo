@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="6.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DemoCountryEnum_T4.tt">
-      <LastGenOutput>DemoCountryEnum_T4.cs</LastGenOutput>
+    <None Update="DemoCountryEnum2_T4.tt">
+      <LastGenOutput>DemoCountryEnum2_T4.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="DemoCountryEnum1_T4.tt">
+      <LastGenOutput>DemoCountryEnum1_T4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
   </ItemGroup>
@@ -20,10 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DemoCountryEnum_T4.cs">
+    <Compile Update="DemoCountryEnum2_T4.cs">
+      <DependentUpon>DemoCountryEnum2_T4.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>DemoCountryEnum_T4.tt</DependentUpon>
+    </Compile>
+    <Compile Update="DemoCountryEnum1_T4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DemoCountryEnum1_T4.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

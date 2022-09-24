@@ -5,25 +5,26 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ assembly name="NetStandard" #>
-
 <#@ assembly name="$(SolutionDir)\Newtonsoft.Json.dll" #>
 <#@ import namespace="Newtonsoft.Json" #>
 <#@ output extension=".cs" #>
 <#@ include file="WcfMetadataModel.ttInclude" #>
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Generic; 
+using System.ServiceModel;
 
 namespace WcfService48
 {
-    public partial class MyWcfClient:IMyWcfService
+    [ServiceContract]
+    public interface IMyWcfServiceImpl
     {
 <#
     // hostspecific template directive should be "true"
     string solutionPath = Host.ResolveAssemblyReference("$(SolutionDir)");
-    var fileName =  $"{solutionPath}\\WcfService48\\Metadata.json"; 
+    var fileName =  $"{solutionPath}\\WcfService48\\Metadata.json";
 
-    var str = File.ReadAllText(fileName); 
+    var str = File.ReadAllText(fileName);
 
     var items = JsonConvert.DeserializeObject<List<MetadataItem>>(str);
     
@@ -31,10 +32,9 @@ namespace WcfService48
     {
 #>
         /// <summary><#=a.Comment#></summary>
-        public <#=a.ReturnType #> <#=a.Name#> (<#=a.ArgListStr #>)
-        {
-            return _policy.Execute(() => base.Channel.<#=a.Name#>(<#=a.ArgListWithoutTypeStr #>));
-        }
+        [OperationContract]
+        <#=a.ReturnType #> <#=a.Name#> (DbContext db, <#=a.ArgListStr #>);
+
 <#
     }
 #>

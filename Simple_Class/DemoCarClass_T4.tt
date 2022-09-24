@@ -9,7 +9,7 @@
               "field ;Guid    ; CarGuid     ; Код машины"
             , "prop  ;int     ; CarBuildYear; Год постройки машины"
             , "propN ;string  ; Model       ; Модель"
-            , "propN ;DateTime; SaleDate    ; Дата продажи"
+            //, "propN ;DateTime; SaleDate    ; Дата продажи"
             };
 #>
 using System;

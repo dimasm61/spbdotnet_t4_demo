@@ -17,7 +17,7 @@ using Polly.CircuitBreaker;
 
 namespace WcfService48
 {
-    public partial class MyWcfServiceWrapper
+    public partial class MyWcfService
     {
 <#
     // hostspecific template directive should be "true"

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using static System.Console;
 
 namespace MyCodegenerator
@@ -7,9 +8,11 @@ namespace MyCodegenerator
     {
         static void Main(string[] args)
         {
-            var nameSpace  = args[0]; // MyCodegeneratorUsing
-            var enumName   = args[1]; // DemoCountryEnum
-            var enumValues = args[2]; // AUS:Australia;AUT:Austria;BHR:Bahrain
+            // C:\Git\spbdotnet_t4_demo\MyCodegenerator\bin\Debug\net5.0\MyCodegenerator.exe > C:\Git\spbdotnet_t4_demo\MyCodegeneratorUsing\DemoCountryEnum.cs
+
+            var nameSpace  = "MyCodegeneratorUsing";
+            var enumName   = "DemoCountryEnum";
+            var enumValues = "AUS:Australia;AUT:Austria;BHR:Bahrain;";//"RUS:Russia";
 
             var metadata = enumValues.Split(';');
 
@@ -35,6 +38,7 @@ namespace MyCodegenerator
             }
 
             WriteLine($"}}");
+
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace WcfService48
 {
-    public partial class MyWcfServiceWrapper: IMyWcfService
+    public partial class MyWcfService: IMyWcfService
     {
         private Policy _policy;
 
@@ -19,7 +19,7 @@ namespace WcfService48
 
         public bool IsTrace => LogVerboseEnabled || LogDebugEnabled;
 
-        private MyWcfServiceImpl _impl;
+        private IMyWcfServiceImpl _impl;
 
         public bool LogVerboseEnabled = true;
         public bool LogDebugEnabled = true;
@@ -27,7 +27,7 @@ namespace WcfService48
 
         ILogger _logger = Serilog.Log.ForContext("Service", "MyWcfService");
 
-        public MyWcfServiceWrapper(MyWcfServiceImpl impl)
+        public MyWcfService(IMyWcfServiceImpl impl)
         {
             _impl = impl;
 
@@ -83,7 +83,8 @@ namespace WcfService48
 
         public List<string> GetMessagePage2(int take, int skip, string textFilter, int? mmsi)
         {
-            var act = new Func<DbContext, List<string>>((db) => _impl.GetMessagePage(db, take, skip, textFilter, mmsi));
+            var act = new Func<DbContext, List<string>>(
+                (db) => _impl.GetMessagePage(db, take, skip, textFilter, mmsi));
 
             return GetDataWrapper(nameof(GetMessagePage2), act);
         }

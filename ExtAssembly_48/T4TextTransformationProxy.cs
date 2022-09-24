@@ -3,11 +3,15 @@
     public class TextTransformationProxy
     {
         private readonly dynamic _ttContext;
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ttContext">TextTransformation object</param>
         public TextTransformationProxy(dynamic ttContext)
         {
             _ttContext = ttContext;
-            
+
             var contextType = ttContext.GetType();
 
         }
@@ -21,11 +25,11 @@
         }
 
         public void Write(string str) => _ttContext.Write(str);
-        
+
         public void WriteLine(string str) => _ttContext.WriteLine(str);
-        
+
         public void PushIndent(string indent) => _ttContext.PushIndent(indent);
-        
+
         public void PopIndent() => _ttContext.PopIndent();
     }
 }

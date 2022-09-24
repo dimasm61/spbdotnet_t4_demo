@@ -6,7 +6,7 @@ namespace EnumByTxtFile
     {
         public void Func()
         {
-                
+            //var s = System.Text.Json.JsonSerializer.Deserialize<>();
         }
     }
 }

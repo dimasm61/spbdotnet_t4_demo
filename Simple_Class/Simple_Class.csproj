@@ -1,13 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" />
+      <PackageReference Include="BenchmarkDotNet" Version="0.13.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DemoCarClassToJson_T4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DemoCarClassToJson_T4.cs</LastGenOutput>
+    </None>
+    <None Update="DemoCarClass_T4 - Copy.tt">
+      <LastGenOutput>DemoCarClass_T4.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
     <None Update="DemoCarClass_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DemoCarClass_T4.cs</LastGenOutput>
+    </None>
+    <None Update="RuntimeTextTemplate1.tt">
+      <LastGenOutput>RuntimeTextTemplate1.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
     </None>
   </ItemGroup>
 
@@ -16,10 +37,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DemoCarClassToJson_T4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DemoCarClassToJson_T4.tt</DependentUpon>
+    </Compile>
     <Compile Update="DemoCarClass_T4.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DemoCarClass_T4.tt</DependentUpon>
+    </Compile>
+    <Compile Update="RuntimeTextTemplate1.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RuntimeTextTemplate1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
