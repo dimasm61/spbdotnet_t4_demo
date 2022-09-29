@@ -72,7 +72,7 @@ namespace WcfService48
             {
                 if(IsTrace) 
                 {
-                    sw.Stop();
+                    sw?.Stop();
                     if (LogDebugEnabled) _logger.Debug("{Method} finish, {Duration} ms", nameof(<#=a.Name#>), sw.ElapsedMilliseconds);
                 }
             }

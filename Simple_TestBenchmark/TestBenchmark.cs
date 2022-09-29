@@ -46,7 +46,7 @@ namespace Simple_TestBenchmark
             
         public TestBenchmark()
         {
-            //randomDict.ContainsKey(Guid.NewGuid());
+
         }
 
         [Benchmark]

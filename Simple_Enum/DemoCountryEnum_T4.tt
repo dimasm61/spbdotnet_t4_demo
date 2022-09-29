@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-<#@ include file="T4Classes.ttInclude" #>
 
 namespace MyCodegeneratorUsing
 {
@@ -37,4 +36,14 @@ namespace MyCodegeneratorUsing
 #>
     } 
 }
+
+<#+ 
+    // include file="T4Classes.ttInclude" 
+    public class A
+    {
+      public int B;
+    }
+#>
+
+
 

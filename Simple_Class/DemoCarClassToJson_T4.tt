@@ -6,39 +6,85 @@
 <#@ output extension=".cs" #>
 <#
     var metaData = new[]{
-              "field ;Guid    ; CarGuid     ; Код машины"
-            , "prop  ;int     ; CarBuildYear; Год постройки машины"
-            , "propN ;string  ; Model       ; Модель"
-            //, "propN ;DateTime; SaleDate    ; Дата продажи"
+              "field ; Guid    ; CarGuid      ; Код машины"
+            , "prop  ; int     ; CarBuildYear ; Год постройки машины"
+            , "propN ; string  ; Model        ; Модель"
+            //, "propN ; DateTime; SaleDate     ; Дата продажи"
             };
 #>
 using System;
 using System.Text;
 
+//<#=        DateTime.Now#>
 namespace Simple_Class
 {
     public static class DemoCarClassExt
     {
-         public static string ToJson(this DemoCarClass item)
+         public static string ToT4JsonWithSb(this DemoCarClass item)
          {
              var sb = new StringBuilder(500);
              sb.Append("{");
 <#
     var k = "";
+    var x = "\\\"";
+    var dtFormat = "yyyy-MM-ddTHH:mm:ss.fffffffK";
     foreach(var s in metaData)
     {
         var a = s.Split(';');
         var name      = a[2].Trim();
-          
+        var fType = a[1].Trim();
+        var val = "";
+
+        if(fType == "int")           val = $"{{0}}";   
+        else if(fType == "DateTime") val = $"\\\"{{0:{dtFormat}}}\\\"";   
+        else if(fType == "string")   val = $"\\\"{{0}}\\\"";  
+        else if(fType == "Guid")     val = $"\\\"{{0}}\\\"";      
+        else                         val = $"\\\"{{0}}\\\"";   
 
 #>
-             sb.AppendFormat("\"<#=k#><#= name #>\":{0}", item.<#= name #>);
+             sb.AppendFormat("<#=            k#>\"<#=            name #>\":<#=val#>", item.<#=            name #>);
 <#
-     k = ", ";
+        k = ", ";
     }
 #>
              sb.Append("}");
              return sb.ToString();
+         }
+
+         public static string ToT4JsonWithConcat(this DemoCarClass item)
+         {
+             return string.Concat(
+             "{"
+<#
+
+    var tab = "              ";
+
+    k = "";
+    foreach(var s in metaData)
+    {
+        var a = s.Split(';');
+
+        var fType = a[1].Trim();
+        var name  = a[2].Trim();
+
+        var name2 = $"\\\"{name}\\\""; 
+
+        var val = "";
+
+        if(fType == "int")           val = $"item.{name}.ToString()";   
+        else if(fType == "DateTime") val = $"\"{x}\",item.{name}.ToString(\"{dtFormat}\"),\"{x}\""; 
+        else if(fType == "string")   val = $"\"{x}\",item.{name},\"{x}\"";  
+        else if(fType == "Guid")     val = $"\"{x}\",item.{name}.ToString(),\"{x}\"";         
+        else                         val = $"\"{x}\",item.{name},\"{x}\"";  
+
+        WriteLine($"{tab},\"{k}{name2}:\",{val}"); 
+        k = ",";
+
+
+   }
+
+#>
+             ,"}");
          }
     }
 }

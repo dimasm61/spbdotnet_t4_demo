@@ -1,0 +1,8 @@
+﻿
+28.09.2022 21:19:01
+$(DevEnvDir)                           : C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\
+$(SolutionDir)                         : C:\Git\spbdotnet_t4_demo\
+AppDomain.CurrentDomain.BaseDirectory  : C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\
+Assembly.GetExecutingAssembly(..       : error in T4 / System.Reflection.Assembly.GetExecutingAssembly().Location 
+Environment.CurrentDirectory           : C:\Git\spbdotnet_t4_demo
+Directory.GetCurrentDirectory(...      : C:\Git\spbdotnet_t4_demo

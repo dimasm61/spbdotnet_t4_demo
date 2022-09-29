@@ -18,10 +18,5 @@ namespace WcfService48
         {
             return _policy.Execute(() => base.Channel.GetMessageArchivePage(take, skip, textFilter, dateFrom, dateTo, mmsi));
         }
-        /// <summary>Получение статистики сообщений</summary>
-        public List<string> GetMessageStatPage (int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo)
-        {
-            return _policy.Execute(() => base.Channel.GetMessageStatPage(take, skip, textFilter, dateFrom, dateTo));
-        }
     } 
 }

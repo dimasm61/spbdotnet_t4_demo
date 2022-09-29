@@ -10,7 +10,8 @@
       <PackageReference Include="System.CodeDom" Version="6.0.0" />
     </ItemGroup>
 
-    <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!--
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <PropertyGroup>
         <TransformOnBuild>true</TransformOnBuild>
     </PropertyGroup>
@@ -27,10 +28,6 @@
       <None Update="TextTemplate1.tt">
         <Generator>TextTemplatingFileGenerator</Generator>
         <LastGenOutput>TextTemplate1.cs</LastGenOutput>
-      </None>
-      <None Update="TextTemplate2.tt">
-        <Generator>TextTemplatingFileGenerator</Generator>
-        <LastGenOutput>TextTemplate2.cs</LastGenOutput>
       </None>
       <None Update="TextTemplate3.tt">
         <Generator>TextTemplatingFileGenerator</Generator>
@@ -53,11 +50,6 @@
         <DesignTime>True</DesignTime>
         <DependentUpon>TextTemplate1.tt</DependentUpon>
       </Compile>
-      <Compile Update="TextTemplate2.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>TextTemplate2.tt</DependentUpon>
-      </Compile>
       <Compile Update="TextTemplate3.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
@@ -73,9 +65,5 @@
     <ItemGroup>
       <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
     </ItemGroup>
-
-    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-      <Exec Command="&quot;$(MSBuildBinPath)\msbuild&quot; &quot;$(SolutionPath)&quot; /t:$(ProjectName):Transform /p:TransformFile=&quot;TextTemplate1.tt&quot; /p:CustomAfterMicrosoftCommonTargets=&quot;$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets&quot;" />
-    </Target>
 
 </Project>

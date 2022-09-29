@@ -44,7 +44,6 @@ namespace Simple_TestBenchmark
     {
         k = (i > 0) ? ", ": "  ";
         var key = keyList[rnd.Next(0, keyList.Count)];
-        //var key = keyList.OrderBy(c=>Guid.NewGuid()).FirstOrDefault();
 #>
             <#=k#>Guid.Parse("<#=key #>")
 <#

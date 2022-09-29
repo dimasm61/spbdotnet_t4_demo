@@ -8,11 +8,13 @@ namespace MyCodegenerator
     {
         static void Main(string[] args)
         {
+            // цель - генерация перечисления со странами
+
             // C:\Git\spbdotnet_t4_demo\MyCodegenerator\bin\Debug\net5.0\MyCodegenerator.exe > C:\Git\spbdotnet_t4_demo\MyCodegeneratorUsing\DemoCountryEnum.cs
 
             var nameSpace  = "MyCodegeneratorUsing";
             var enumName   = "DemoCountryEnum";
-            var enumValues = "AUS:Australia;AUT:Austria;BHR:Bahrain;";//"RUS:Russia";
+            var enumValues = "AUS:Australia;AUT:Austria;BHR:Bahrain";//;"RUS:Russia";
 
             var metadata = enumValues.Split(';');
 

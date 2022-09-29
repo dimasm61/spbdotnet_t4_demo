@@ -20,9 +20,9 @@ namespace EnumByDOM
     {
     }
 
-    public class D : CommonClass
-    {
-    }
+    //public class D : CommonClass
+    //{
+    //}
 
 
     // CommonClass GetInstance(ClassEnum classEnum)

@@ -1,0 +1,33 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ output extension=".cs" #>
+
+namespace MyCodegeneratorUsing
+{
+<#
+    // hostspecific template directive should be "true"
+    string solutionPath = Environment.CurrentDirectory;
+#>
+    enum DemoCountryEnum2
+    {
+<#
+
+    var fileName =  $"{solutionPath}\\Metadata.txt";
+    var lines = File.ReadAllLines(fileName);
+
+    foreach(var a in lines)
+    {
+        var b = a.Split(':');
+#>
+
+        /// <summary><#=b[1] #></summary>
+        <#=b[0]#>,
+<#
+    }
+#>
+    } 
+}

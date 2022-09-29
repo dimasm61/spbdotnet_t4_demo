@@ -1,9 +1,9 @@
-﻿
+
 
 namespace Hello
 {
     public enum MyEnum {
-// 15.09.2022 19:50:07
+// 28.09.2022 21:22:26
         item00, 
         item01, 
         item02, 

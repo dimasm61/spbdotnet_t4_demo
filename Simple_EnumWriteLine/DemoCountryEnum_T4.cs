@@ -1,4 +1,4 @@
-﻿
+
 namespace MyCodegeneratorUsing
 {
     enum DemoCountryEnum

@@ -27,45 +27,18 @@ namespace Simple_Class
 
         }
 
-        [Benchmark]
-        public void WithNewtonsoft()
-        {
-            var str = JsonConvert.SerializeObject(item);
-        }
-        
-        [Benchmark]
-        public void WithTemplate()
-        {
-            var str = item.ToJson();
-        }
-
 
         [Benchmark]
-        public void WithNewtonsoft2()
-        {
-            WithNewtonsoftImpl();
-        }
+        public string WithTemplateWithSb() => item.ToT4JsonWithSb();
 
         [Benchmark]
-        public void WithNewtonsoft2_()
-        {
-            WithNewtonsoftImpl2();
-        }
+        public string WithTemplateConcat() => item.ToT4JsonWithConcat();
 
         [Benchmark]
-        public void WithTemplate2()
-        {
-            WithTemplateImpl();
-        }
+        public string WithNewtonsoft() => JsonConvert.SerializeObject(item);
 
-
-        [MethodImpl(MethodImplOptions.NoOptimization)]
-        private void WithNewtonsoftImpl()
-        {
-            var str = JsonConvert.SerializeObject(item);
-        }
-
-        public void WithNewtonsoftImpl2()
+        [Benchmark]
+        public string WithNewtonsoftWithStream()
         {
             using var stream = new MemoryStream();
             using var streamWriter = new StreamWriter(stream);
@@ -73,33 +46,21 @@ namespace Simple_Class
 
             serializer.Serialize(writer, item);
 
-            //var streamReader = new StreamReader(stream);
-            //var str = streamReader.ReadToEnd();
-
-            var str = Encoding.ASCII.GetString(stream.ToArray());
-
+            return Encoding.ASCII.GetString(stream.ToArray());
         }
 
-        [MethodImpl(MethodImplOptions.NoOptimization)]
-        private void WithTemplateImpl()
-        {
-            var str = item.ToJson();
-        }
-
+       
     }
 }
 
-
-
-
-
-
-
 /*
+ 
 
-|         Method |       Mean |   Error |  StdDev |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|--------------- |-----------:|--------:|--------:|-------:|------:|------:|----------:|
-| WithNewtonsoft | 1,047.1 ns | 7.93 ns | 7.42 ns | 0.7801 |     - |     - |      2 KB |
-|   WithTemplate |   391.0 ns | 3.74 ns | 3.12 ns | 0.6309 |     - |     - |      1 KB | 
+|                   Method |       Mean |    Error |   StdDev |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+|------------------------- |-----------:|---------:|---------:|-------:|------:|------:|----------:|
+|       WithTemplateWithSb |   451.2 ns |  5.82 ns |  5.16 ns | 0.6342 |     - |     - |   1,328 B |
+|       WithTemplateConcat |   180.8 ns |  2.08 ns |  1.95 ns | 0.2103 |     - |     - |     440 B |
+|           WithNewtonsoft | 1,028.6 ns | 13.69 ns | 12.14 ns | 0.7801 |     - |     - |   1,632 B |
+| WithNewtonsoftWithStream | 1,379.2 ns | 23.31 ns | 19.46 ns | 2.9850 |     - |     - |   6,248 B |
 
-*/
+ */

@@ -33,7 +33,7 @@ namespace WcfService48
 
             _policy = Policy
                 .Handle<SqlException>(ex => ex.Number == TimeoutExceptionCode)
-                .CircuitBreaker(10, TimeSpan.FromMinutes(10));
+                .CircuitBreaker(10, TimeSpan.FromMinutes(2));
         }
 
         //private void Log(string methodName, object data)

@@ -51,6 +51,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple_TestBenchmark", "Sim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple_Enum", "Simple_Enum\Simple_Enum.csproj", "{63A8D2FC-E31D-45D3-8F9E-58E3CEBCD0B4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABA06C84-B3ED-41AC-BFD8-DED86D18C392}"
+	ProjectSection(SolutionItems) = preProject
+		Mono.TextTemplate.bat = Mono.TextTemplate.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

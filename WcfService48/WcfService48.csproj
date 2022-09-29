@@ -71,8 +71,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyWcfClient_T4.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyWcfServiceImpl_T4.cs">
-      <DependentUpon>MyWcfServiceImpl_T4.tt</DependentUpon>
+    <Compile Include="MyWcfInterfaceServiceImpl_T4.cs">
+      <DependentUpon>MyWcfInterfaceServiceImpl_T4.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -102,9 +102,9 @@
     <None Include="WcfMetadataModel.ttInclude" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyWcfServiceImpl_T4.tt">
+    <Content Include="MyWcfInterfaceServiceImpl_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyWcfServiceImpl_T4.cs</LastGenOutput>
+      <LastGenOutput>MyWcfInterfaceServiceImpl_T4.cs</LastGenOutput>
     </Content>
     <Content Include="MyWcfService_T4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
