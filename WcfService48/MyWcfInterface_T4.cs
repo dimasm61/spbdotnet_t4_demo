@@ -17,5 +17,9 @@ namespace WcfService48
         [OperationContract]
         List<string> GetMessageArchivePage (int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo, int? mmsi);
 
+        /// <summary>Получение списка сообщений из архива</summary>
+        [OperationContract]
+        List<string> GetMessageArchivePage2 (int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo, int? mmsi);
+
     } 
 }

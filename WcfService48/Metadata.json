@@ -24,5 +24,19 @@
             "int?:mmsi"
         ],
         "GenerateIn": "iface,client"
+    },
+    {
+        "Comment": "Получение списка сообщений из архива",
+        "ReturnType": "List<string>",
+        "Name": "GetMessageArchivePage2",
+        "ArgList": [
+            "int:take",
+            "int:skip",
+            "string:textFilter",
+            "DateTime?:dateFrom",
+            "DateTime?:dateTo",
+            "int?:mmsi"
+        ],
+        "GenerateIn": "iface,client"
     }
 ]

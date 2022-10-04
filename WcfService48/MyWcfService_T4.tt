@@ -64,7 +64,7 @@ namespace WcfService48
             }
             catch(Exception ex)
             {
-                if(IsTrace) sw.Stop();
+                if(IsTrace) sw?.Stop();
 
                _logger.Error(ex, nameof(<#=a.Name#>));
             }

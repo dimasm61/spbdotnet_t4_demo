@@ -18,5 +18,10 @@ namespace WcfService48
         {
             return _policy.Execute(() => base.Channel.GetMessageArchivePage(take, skip, textFilter, dateFrom, dateTo, mmsi));
         }
+        /// <summary>Получение списка сообщений из архива</summary>
+        public List<string> GetMessageArchivePage2 (int take, int skip, string textFilter, DateTime? dateFrom, DateTime? dateTo, int? mmsi)
+        {
+            return _policy.Execute(() => base.Channel.GetMessageArchivePage2(take, skip, textFilter, dateFrom, dateTo, mmsi));
+        }
     } 
 }
